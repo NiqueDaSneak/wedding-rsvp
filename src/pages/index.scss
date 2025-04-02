@@ -1,0 +1,40 @@
+@import '../components/index.scss';
+
+body {
+  --s: 80px; /* control the size */
+  --c1: rgb(58, 58, 58); /* Emerald - static */
+  --c2: grey; /* Rose Gold - will shimmer to Gold */
+
+  --_s: calc(2 * var(--s)) calc(2 * var(--s));
+  --_g: 35.36% 35.36% at;
+  --_c: #0000 66%, var(--c2) 68% 70%, #0000 72%;
+
+  background: radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s) /
+      var(--_s),
+    radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s) / var(--_s),
+    radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0 / var(--_s),
+    radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0 / var(--_s),
+    repeating-conic-gradient(var(--c1) 0 25%, #0000 0 50%) 0 0 / var(--_s),
+    radial-gradient(var(--_c)) 0 calc(var(--s) / 2) / var(--s) var(--s)
+      var(--c1);
+  backdrop-filter: blur(7px);
+  background-attachment: fixed; /* This makes the background fixed */
+  margin: 0;
+  /* Animation for shimmering lines with smooth transitions */
+  //   animation: shimmerLines 6s infinite alternate ease-in-out;
+}
+
+.text-photos-container {
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: 25dvh 75dvh;
+  align-items: center;
+  padding-top: 40px;
+}
+
+main {
+  @include respond-to(desktop) {
+    width: 40%;
+    margin: 0 auto;
+  }
+}
