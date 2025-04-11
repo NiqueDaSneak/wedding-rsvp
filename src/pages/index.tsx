@@ -31,7 +31,6 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <main>
-      <SiteHeader />
       <section
         className="hero-section"
         style={{ backgroundImage: `url(${Hero})` }}
