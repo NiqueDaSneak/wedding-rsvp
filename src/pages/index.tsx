@@ -1,15 +1,40 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 import AnImage from '../images/1.jpeg';
+import Hero from '../images/2.jpg';
+import ColorScheme from '../images/3.jpg';
+import Last from '../images/4.jpg';
 import './index.scss';
 import CountdownTimer from '../components/CountdownTimer/CountdownTimer';
+import SiteHeader from '../components/SiteHeader/SiteHeader';
+import WebGPUHashtag from '../components/WebGPUHashtag/WebGPUHashtag';
+import ColorPaletteGlissando from '../components/ColorPaletteGlissando/ColorPaletteGlissando';
 
 const IndexPage: React.FC<PageProps> = () => {
+  // Define the color palette
+  const colorPalette = [
+    '#FFFFFF',
+    '#F0F0F0',
+    '#E0E0E0',
+    '#D0D0D0',
+    '#C8C8C8',
+    '#B8B8B8',
+    '#A0A0A0',
+    '#888888',
+    '#787878',
+    '#707070',
+    '#585858',
+    '#404040',
+    '#303030',
+    '#202020',
+  ];
+
   return (
     <main>
+      <SiteHeader />
       <section
         className="hero-section"
-        style={{ backgroundImage: `url(${AnImage})` }}
+        style={{ backgroundImage: `url(${Hero})` }}
       >
         <h1>
           <span>Dominique</span>
@@ -42,37 +67,18 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <section className="dress-code-section">
-        <img src={AnImage} alt="Dress code" />
+        <img
+          style={{ filter: 'grayscale(1)' }}
+          src={ColorScheme}
+          alt="Dress code"
+        />
         <h3>Dress Code</h3>
         <p>Come dressed as a furry</p>
         <p className="note">
           We kindly encourage our guests to wear these colors for our special
           day:
         </p>
-        <aside className="color-palette">
-          {[
-            '#FFFFFF',
-            '#F0F0F0',
-            '#E0E0E0',
-            '#D0D0D0',
-            '#C8C8C8',
-            '#B8B8B8',
-            '#A0A0A0',
-            '#888888',
-            '#787878',
-            '#707070',
-            '#585858',
-            '#404040',
-            '#303030',
-            '#202020',
-          ].map((color) => (
-            <div
-              className="color-swatch"
-              style={{ backgroundColor: color }}
-              key={color}
-            />
-          ))}
-        </aside>
+        <ColorPaletteGlissando colors={colorPalette} />
       </section>
 
       <section className="rsvp-section">
@@ -83,7 +89,7 @@ const IndexPage: React.FC<PageProps> = () => {
         </p>
         <button>Click Here To RSVP</button>
         <p className="deadline">Kindly respond by June 4th, 2025</p>
-        <img src={AnImage} alt="RSVP" />
+        <img src={Last} alt="RSVP" />
         <p className="closing">
           We can't wait to share this wonderful day with you!
         </p>

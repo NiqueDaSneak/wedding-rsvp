@@ -1,0 +1,74 @@
+.animated-hashtag {
+  width: 100%;
+  height: 100px;
+  margin: 1.5rem 0;
+  position: relative;
+
+  svg {
+    overflow: visible;
+  }
+
+  .hashtag-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    fill: transparent;
+    stroke: #537614;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation: textAnimation 3s ease-in-out forwards;
+  }
+
+  .hashtag-underline {
+    stroke: #a2c563;
+    stroke-width: 1.5px;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: draw 2.5s ease-in-out forwards 0.5s;
+  }
+
+  @keyframes textAnimation {
+    0% {
+      fill: transparent;
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+    }
+    70% {
+      fill: transparent;
+      stroke-dashoffset: 0;
+    }
+    100% {
+      fill: #537614;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+// Media queries for responsive design
+@media (max-width: 768px) {
+  .animated-hashtag {
+    height: 80px;
+
+    .hashtag-text {
+      font-size: 28px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-hashtag {
+    height: 60px;
+
+    .hashtag-text {
+      font-size: 22px;
+    }
+  }
+}

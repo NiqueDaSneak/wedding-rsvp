@@ -1,5 +1,14 @@
 @import '../components/index.scss';
 
+// Color palette variables
+$background-green: #d1ed9e;
+$text-color: #344f26; // Darker green instead of #333
+$section-bg-primary: #f8fbf2; // Very subtle light green tint
+$section-bg-secondary: #f2f7e9; // Slightly deeper green tint for contrast
+$accent-color: #a2c563; // Medium green accent
+$subtle-border: rgba(162, 197, 99, 0.2); // Subtle border color
+$shadow-color: rgba(83, 118, 20, 0.08); // Green-tinted shadow
+
 // Mixin definitions
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
@@ -17,16 +26,19 @@ $breakpoint-desktop: 1024px;
 }
 
 body {
-  background: linear-gradient(
-    135deg,
-    #f9f9f9 25%,
-    #f2f2f2 25%,
-    #f2f2f2 50%,
-    #f9f9f9 50%,
-    #f9f9f9 75%,
-    #f2f2f2 75%,
-    #f2f2f2 100%
-  );
+  background-color: $background-green;
+  // background-image: linear-gradient(
+  //   135deg,
+  //   #d1ed9e 25%,
+  //   // Light green
+  //   transparent 25%,
+  //   transparent 50%,
+  //   #a2c563 50%,
+  //   // Medium green
+  //   #a2c563 75%,
+  //   transparent 75%,
+  //   transparent
+  // );
   background-size: 20px 20px;
   background-attachment: fixed;
   margin: 0;
@@ -43,7 +55,7 @@ main {
   display: grid;
   gap: 60px;
   font-family: 'Cormorant Garamond', serif;
-  color: #333;
+  color: $text-color;
   width: 90vw;
   max-width: 1200px;
   margin: 0 auto;
@@ -57,7 +69,7 @@ main {
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px $shadow-color;
   }
 }
 
@@ -282,15 +294,19 @@ main {
   display: grid;
   justify-items: center;
   gap: 20px;
-  background: #f8f8f8;
+  background: $section-bg-secondary;
   padding: 40px 20px;
   border-radius: 8px;
 
   @include respond-to(desktop) {
     padding: 60px;
-    background: linear-gradient(135deg, #f8f8f8, #f2f2f2);
+    background: linear-gradient(
+      135deg,
+      $section-bg-primary,
+      $section-bg-secondary
+    );
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px $shadow-color;
   }
 
   h2 {
@@ -310,7 +326,7 @@ main {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     font-weight: 500;
-    color: #585858;
+    color: darken($text-color, 5%);
 
     @include respond-to(desktop) {
       font-size: 2.2rem;
@@ -328,8 +344,9 @@ main {
   justify-items: center;
   gap: 28px;
   padding: 40px 20px;
-  background: #fff;
+  background: $section-bg-primary;
   border-radius: 8px;
+  border: 1px solid $subtle-border;
   margin: 0 auto;
   max-width: 800px;
 
@@ -344,7 +361,7 @@ main {
     gap: 25px 60px;
     padding: 60px;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px $shadow-color;
   }
 
   img {
@@ -382,8 +399,8 @@ main {
       transform: translateX(-50%);
       width: 40px;
       height: 1px;
-      background: #d0d0d0;
-
+      background: $accent-color;
+      opacity: 0.4;
       @include respond-to(desktop) {
         left: 0;
         transform: none;
@@ -432,7 +449,7 @@ main {
       grid-area: palette;
       gap: 5px;
       padding: 20px;
-      background-color: #f9f9f9;
+      background-color: $section-bg-secondary;
       border-radius: 8px;
       justify-content: flex-start;
     }
@@ -460,8 +477,9 @@ main {
   justify-items: center;
   gap: 25px;
   padding: 50px 20px;
-  background: #f8f8f8;
+  background: $section-bg-secondary;
   border-radius: 8px;
+  border: 1px solid $subtle-border;
   margin: 0 auto;
   max-width: 800px;
 
@@ -476,6 +494,7 @@ main {
     padding: 70px;
     gap: 30px;
     align-items: center;
+    box-shadow: 0 10px 30px $shadow-color;
   }
 
   h2 {
@@ -500,8 +519,8 @@ main {
       transform: translateX(-50%);
       width: 60px;
       height: 2px;
-      background: #d0d0d0;
-
+      background: $accent-color;
+      opacity: 0.4;
       @include respond-to(desktop) {
         width: 100px;
       }
@@ -516,7 +535,7 @@ main {
     &.notice {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      color: #555;
+      color: darken($text-color, 5%);
 
       @include respond-to(desktop) {
         grid-area: notice;
@@ -555,7 +574,7 @@ main {
 
   button {
     background: transparent;
-    border: 1px solid #333;
+    border: 1px solid $text-color;
     padding: 12px 28px;
     font-size: 0.95rem;
     font-family: 'Montserrat', sans-serif;
@@ -592,7 +611,7 @@ main {
       @include respond-to(desktop) {
         background: transparent;
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 5px 15px $shadow-color;
 
         &::before {
           transform: translateX(100%);
