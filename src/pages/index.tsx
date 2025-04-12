@@ -13,7 +13,6 @@ import ColorPaletteGlissando from '../components/ColorPaletteGlissando/ColorPale
 const IndexPage: React.FC<PageProps> = () => {
   // Define the color palette
   const colorPalette = [
-    '#FFFFFF',
     '#F0F0F0',
     '#E0E0E0',
     '#D0D0D0',
