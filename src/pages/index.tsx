@@ -9,7 +9,7 @@ import CountdownTimer from '../components/CountdownTimer/CountdownTimer';
 import SiteHeader from '../components/SiteHeader/SiteHeader';
 import WebGPUHashtag from '../components/WebGPUHashtag/WebGPUHashtag';
 import ColorPaletteGlissando from '../components/ColorPaletteGlissando/ColorPaletteGlissando';
-
+import Song from '../images/song.mp3';
 const IndexPage: React.FC<PageProps> = () => {
   // Define the color palette
   const colorPalette = [
@@ -32,7 +32,7 @@ const IndexPage: React.FC<PageProps> = () => {
     <main>
       <section
         className="hero-section"
-        style={{ backgroundImage: `url(${Hero})` }}
+        style={{ backgroundImage: `url(${Hero})`, filter: 'blur(1px)' }}
       >
         <h1>
           <span>Dominique</span>
@@ -40,8 +40,14 @@ const IndexPage: React.FC<PageProps> = () => {
           <span>Sabigaynn</span>
         </h1>
       </section>
-
       <section className="invitation-section">
+        <div className="wedding-audio-container">
+          <p className="audio-title">Our First Dance Song</p>
+          <audio src={Song} controls className="wedding-audio-player" />
+          <p className="audio-caption">
+            Listen to the song that captures our love story
+          </p>
+        </div>
         <h2>We joyfully invite you to the celebration of our marriage</h2>
         <p className="date">SEPTEMBER 9, 2025</p>
       </section>

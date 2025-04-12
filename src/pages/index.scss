@@ -9,6 +9,16 @@ $accent-color: #a2c563; // Medium green accent
 $subtle-border: rgba(162, 197, 99, 0.2); // Subtle border color
 $shadow-color: rgba(83, 118, 20, 0.08); // Green-tinted shadow
 
+// Spacing variables
+$section-gap-mobile: 60px;
+$section-gap-desktop: 100px;
+$element-gap-mobile: 20px;
+$element-gap-desktop: 30px;
+$padding-mobile: 20px;
+$padding-desktop: 40px;
+$inner-section-padding-mobile: 40px 20px;
+$inner-section-padding-desktop: 60px;
+
 // Mixin definitions
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
@@ -46,26 +56,26 @@ body {
 
   @include respond-to(desktop) {
     background-size: 30px 30px;
-    padding: 40px 0;
+    padding: $padding-desktop;
   }
 }
 
 // Main container
 main {
   display: grid;
-  gap: 60px;
+  gap: $section-gap-mobile;
   font-family: 'Cormorant Garamond', serif;
   color: $text-color;
   width: 90vw;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: $padding-mobile;
 
   @include respond-to(desktop) {
     width: 75%;
     max-width: 1000px;
-    gap: 100px;
-    padding: 40px;
+    gap: $section-gap-desktop;
+    padding: $padding-desktop;
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     border-radius: 12px;
@@ -89,7 +99,7 @@ main {
   @include respond-to(desktop) {
     height: 60vh;
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: $element-gap-mobile;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   }
 
@@ -135,7 +145,7 @@ main {
 
       &.ampersand {
         display: inline-block;
-        margin: 0 10px;
+        margin: 0 $element-gap-mobile;
         font-size: 0.6em;
         vertical-align: middle;
         font-family: 'Cormorant Garamond', serif;
@@ -143,7 +153,7 @@ main {
 
         @include respond-to(desktop) {
           font-size: 0.7em;
-          margin: 0 20px;
+          margin: 0 $element-gap-desktop;
         }
       }
     }
@@ -154,12 +164,12 @@ main {
 .invitation-section {
   display: grid;
   justify-items: center;
-  gap: 20px;
+  gap: $element-gap-mobile;
   text-align: center;
 
   @include respond-to(desktop) {
-    gap: 30px;
-    padding: 20px 60px 40px;
+    gap: $element-gap-desktop;
+    padding: $element-gap-mobile $inner-section-padding-desktop $padding-desktop;
     position: relative;
 
     &::before,
@@ -173,11 +183,11 @@ main {
     }
 
     &::before {
-      left: 20px;
+      left: $element-gap-mobile;
     }
 
     &::after {
-      right: 20px;
+      right: $element-gap-mobile;
     }
   }
 
@@ -188,7 +198,7 @@ main {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
     margin: 0;
     position: relative;
-    padding-bottom: 25px;
+    padding-bottom: $element-gap-mobile + 5px;
 
     @include respond-to(desktop) {
       font-size: 2.8rem;
@@ -239,13 +249,13 @@ main {
       'image title'
       'image text';
     align-items: center;
-    gap: 30px 60px;
+    gap: $element-gap-desktop 60px;
     max-width: 900px;
   }
 
   img {
     width: 40%;
-    border-radius: 50%;
+    border-radius: 14%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
     @include respond-to(desktop) {
@@ -262,7 +272,7 @@ main {
     letter-spacing: 0.2em;
     font-size: 1rem;
     font-weight: 600;
-    margin: 10px 0;
+    margin: $element-gap-mobile / 2 0;
 
     @include respond-to(desktop) {
       grid-area: title;
@@ -293,13 +303,13 @@ main {
 .countdown-section {
   display: grid;
   justify-items: center;
-  gap: 20px;
+  gap: $element-gap-mobile;
   background: $section-bg-secondary;
-  padding: 40px 20px;
+  padding: $inner-section-padding-mobile;
   border-radius: 8px;
 
   @include respond-to(desktop) {
-    padding: 60px;
+    padding: $inner-section-padding-desktop;
     background: linear-gradient(
       135deg,
       $section-bg-primary,
@@ -318,7 +328,7 @@ main {
 
     @include respond-to(desktop) {
       font-size: 2.5rem;
-      margin-bottom: 20px;
+      margin-bottom: $element-gap-mobile;
     }
   }
 
@@ -332,7 +342,7 @@ main {
       font-size: 2.2rem;
       letter-spacing: 0.05em;
       background: rgba(255, 255, 255, 0.6);
-      padding: 15px 40px;
+      padding: $element-gap-mobile $element-gap-desktop;
       border-radius: 8px;
     }
   }
@@ -343,7 +353,7 @@ main {
   display: grid;
   justify-items: center;
   gap: 28px;
-  padding: 40px 20px;
+  padding: $inner-section-padding-mobile;
   background: $section-bg-primary;
   border-radius: 8px;
   border: 1px solid $subtle-border;
@@ -359,14 +369,14 @@ main {
       'palette palette';
     align-items: center;
     gap: 25px 60px;
-    padding: 60px;
+    padding: $inner-section-padding-desktop;
     border-radius: 16px;
     box-shadow: 0 10px 30px $shadow-color;
   }
 
   img {
     width: 40%;
-    border-radius: 50%;
+    border-radius: 14%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
     @include respond-to(desktop) {
@@ -382,7 +392,7 @@ main {
     font-weight: 400;
     margin: 0;
     position: relative;
-    padding-bottom: 15px;
+    padding-bottom: $element-gap-mobile - 5px;
     text-align: center;
 
     @include respond-to(desktop) {
@@ -427,7 +437,7 @@ main {
       text-transform: uppercase;
       letter-spacing: 0.1em;
       font-weight: 500;
-      margin: 10px 0 0;
+      margin: $element-gap-mobile / 2 0 0;
 
       @include respond-to(desktop) {
         grid-area: note;
@@ -448,7 +458,7 @@ main {
     @include respond-to(desktop) {
       grid-area: palette;
       gap: 5px;
-      padding: 20px;
+      padding: $element-gap-mobile;
       background-color: $section-bg-secondary;
       border-radius: 8px;
       justify-content: flex-start;
@@ -476,7 +486,7 @@ main {
   display: grid;
   justify-items: center;
   gap: 25px;
-  padding: 50px 20px;
+  padding: 50px $padding-mobile;
   background: $section-bg-secondary;
   border-radius: 8px;
   border: 1px solid $subtle-border;
@@ -492,7 +502,7 @@ main {
       'deadline deadline'
       'image closing';
     padding: 70px;
-    gap: 30px;
+    gap: $element-gap-desktop;
     align-items: center;
     box-shadow: 0 10px 30px $shadow-color;
   }
@@ -503,7 +513,7 @@ main {
     font-weight: 400;
     margin: 0;
     position: relative;
-    padding-bottom: 18px;
+    padding-bottom: $element-gap-mobile - 2px;
     text-align: center;
 
     @include respond-to(desktop) {
@@ -582,7 +592,7 @@ main {
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin: 10px 0;
+    margin: $element-gap-mobile / 2 0;
     position: relative;
     overflow: hidden;
 
@@ -622,14 +632,104 @@ main {
 
   img {
     width: 40%;
-    border-radius: 50%;
+    border-radius: 14%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
+    margin: $element-gap-mobile 0;
 
     @include respond-to(desktop) {
       grid-area: image;
       width: 80%;
       margin: 0;
     }
+  }
+}
+
+.wedding-audio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: $padding-mobile;
+  margin-bottom: $section-gap-mobile;
+
+  @include respond-to(desktop) {
+    padding: $element-gap-desktop;
+    margin-bottom: $section-gap-desktop - 20px;
+    border: 1px solid $subtle-border;
+    box-shadow: 0 8px 20px $shadow-color;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    transform: translateY(-20px);
+  }
+}
+
+.audio-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: $element-gap-mobile - 5px;
+  color: #404040;
+
+  @include respond-to(desktop) {
+    font-size: 1.5rem;
+    margin-bottom: $element-gap-desktop - 10px;
+    color: $text-color;
+  }
+}
+
+.wedding-audio-player {
+  width: 100%;
+  height: 40px;
+
+  @include respond-to(desktop) {
+    height: 50px;
+  }
+
+  &::-webkit-media-controls-panel {
+    background-color: #f8f8f8;
+
+    @include respond-to(desktop) {
+      background-color: $section-bg-primary;
+    }
+  }
+
+  &::-webkit-media-controls-play-button {
+    background-color: #404040;
+    border-radius: 50%;
+
+    @include respond-to(desktop) {
+      background-color: $text-color;
+    }
+  }
+
+  &::-webkit-media-controls-volume-slider {
+    background-color: #d0d0d0;
+
+    @include respond-to(desktop) {
+      background-color: rgba(162, 197, 99, 0.3);
+    }
+  }
+}
+
+.audio-caption {
+  margin-top: $element-gap-mobile - 5px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: #787878;
+  font-style: italic;
+
+  @include respond-to(desktop) {
+    margin-top: $element-gap-desktop - 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $text-color;
+    max-width: 80%;
+    text-align: center;
   }
 }
