@@ -654,11 +654,16 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: calc(
+    100% - 2 * $padding-mobile
+  ); // Adjust width to account for padding
+  max-width: 100%;
   padding: $padding-mobile;
   margin-bottom: $section-gap-mobile;
+  box-sizing: border-box; // Ensure padding is included in width calculation
 
   @include respond-to(desktop) {
+    width: 100%;
     padding: $element-gap-desktop;
     margin-bottom: $section-gap-desktop - 20px;
     border: 1px solid $subtle-border;
@@ -685,6 +690,7 @@ main {
 
 .wedding-audio-player {
   width: 100%;
+  max-width: 100%; // Ensure audio player doesn't overflow
   height: 40px;
 
   @include respond-to(desktop) {
