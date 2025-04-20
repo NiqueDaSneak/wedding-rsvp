@@ -9,7 +9,9 @@ import CountdownTimer from '../components/CountdownTimer/CountdownTimer';
 import SiteHeader from '../components/SiteHeader/SiteHeader';
 import WebGPUHashtag from '../components/WebGPUHashtag/WebGPUHashtag';
 import ColorPaletteGlissando from '../components/ColorPaletteGlissando/ColorPaletteGlissando';
+import RainingHearts from '../components/RainingHearts/RainingHearts';
 import Song from '../images/song.mp3';
+
 const IndexPage: React.FC<PageProps> = () => {
   // Define the color palette
   const colorPalette = [
@@ -30,9 +32,13 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <main>
+      <RainingHearts />
       <section
         className="hero-section"
-        style={{ backgroundImage: `url(${Hero})`, filter: 'blur(1px)' }}
+        style={{
+          backgroundImage: `url(${Hero})`,
+          // filter: 'blur(1px)'
+        }}
       >
         <h1>
           <span>Dominique</span>
