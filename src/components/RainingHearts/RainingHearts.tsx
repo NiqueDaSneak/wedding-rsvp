@@ -43,7 +43,8 @@ const RainingHearts: React.FC = () => {
     let isWebGLSupported = true;
     try {
       const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      const gl =
+        canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
       if (!gl) {
         isWebGLSupported = false;
       }
@@ -67,16 +68,13 @@ const RainingHearts: React.FC = () => {
 
     initializeThreeJS();
 
+    // Handle mouse events only (not touch)
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('mousemove', handleMouseMove);
 
-    if (isTouchDeviceRef.current && containerRef.current) {
-      containerRef.current.addEventListener('touchstart', handleTouchStart);
-      containerRef.current.addEventListener('touchend', handleTouchEnd);
-      containerRef.current.addEventListener('touchmove', handleTouchMove);
-      containerRef.current.style.pointerEvents = 'auto';
-    }
+    // We're removing touch event listeners to allow scrolling on mobile
+    // Hearts will still display but won't react to touch
 
     window.addEventListener('resize', handleResize);
     handleResize();
@@ -87,12 +85,6 @@ const RainingHearts: React.FC = () => {
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener('resize', handleResize);
-
-      if (isTouchDeviceRef.current && containerRef.current) {
-        containerRef.current.removeEventListener('touchstart', handleTouchStart);
-        containerRef.current.removeEventListener('touchend', handleTouchEnd);
-        containerRef.current.removeEventListener('touchmove', handleTouchMove);
-      }
 
       disposeThreeJS();
     };
@@ -105,12 +97,14 @@ const RainingHearts: React.FC = () => {
     const vector = new THREE.Vector3(
       (event.clientX / dimensionsRef.current.width) * 2 - 1,
       -((event.clientY / dimensionsRef.current.height) * 2 - 1),
-      0
+      0,
     );
     vector.unproject(cameraRef.current!);
     const dir = vector.sub(cameraRef.current!.position).normalize();
     const distance = -cameraRef.current!.position.z / dir.z;
-    clickPositionRef.current = cameraRef.current!.position.clone().add(dir.multiplyScalar(distance));
+    clickPositionRef.current = cameraRef
+      .current!.position.clone()
+      .add(dir.multiplyScalar(distance));
   };
 
   const handleMouseUp = () => {
@@ -118,70 +112,6 @@ const RainingHearts: React.FC = () => {
       explosionStrengthRef.current = blackHoleStrengthRef.current * 1.5;
       blackHoleStrengthRef.current = 0;
       isMouseDownRef.current = false;
-    }
-  };
-
-  const handleTouchStart = (event: TouchEvent) => {
-    event.preventDefault();
-
-    if (event.touches.length > 0) {
-      isMouseDownRef.current = true;
-      blackHoleStrengthRef.current = 0;
-
-      const touch = event.touches[0];
-
-      const vector = new THREE.Vector3(
-        (touch.clientX / dimensionsRef.current.width) * 2 - 1,
-        -((touch.clientY / dimensionsRef.current.height) * 2 - 1),
-        0
-      );
-
-      if (cameraRef.current) {
-        vector.unproject(cameraRef.current);
-        const dir = vector.sub(cameraRef.current.position).normalize();
-        const distance = -cameraRef.current.position.z / dir.z;
-        clickPositionRef.current = cameraRef.current.position.clone().add(dir.multiplyScalar(distance));
-      }
-
-      mouseRef.current.set(
-        (touch.clientX / dimensionsRef.current.width) * 2 - 1,
-        -((touch.clientY / dimensionsRef.current.height) * 2 - 1)
-      );
-    }
-  };
-
-  const handleTouchEnd = (event: TouchEvent) => {
-    event.preventDefault();
-
-    if (isMouseDownRef.current) {
-      explosionStrengthRef.current = blackHoleStrengthRef.current * 1.5;
-      blackHoleStrengthRef.current = 0;
-      isMouseDownRef.current = false;
-    }
-  };
-
-  const handleTouchMove = (event: TouchEvent) => {
-    event.preventDefault();
-
-    if (event.touches.length > 0) {
-      const touch = event.touches[0];
-
-      mouseRef.current.set(
-        (touch.clientX / dimensionsRef.current.width) * 2 - 1,
-        -((touch.clientY / dimensionsRef.current.height) * 2 - 1)
-      );
-
-      if (isMouseDownRef.current && cameraRef.current) {
-        const vector = new THREE.Vector3(
-          (touch.clientX / dimensionsRef.current.width) * 2 - 1,
-          -((touch.clientY / dimensionsRef.current.height) * 2 - 1),
-          0
-        );
-        vector.unproject(cameraRef.current);
-        const dir = vector.sub(cameraRef.current.position).normalize();
-        const distance = -cameraRef.current.position.z / dir.z;
-        clickPositionRef.current = cameraRef.current.position.clone().add(dir.multiplyScalar(distance));
-      }
     }
   };
 
@@ -195,7 +125,7 @@ const RainingHearts: React.FC = () => {
       75,
       dimensionsRef.current.width / dimensionsRef.current.height,
       0.1,
-      1000
+      1000,
     );
     camera.position.z = 10;
     cameraRef.current = camera;
@@ -214,6 +144,11 @@ const RainingHearts: React.FC = () => {
     addLighting(scene);
 
     createHeartParticles();
+
+    // Ensure the container doesn't capture any pointer events
+    if (containerRef.current) {
+      containerRef.current.style.pointerEvents = 'none';
+    }
 
     animate();
   };
@@ -244,7 +179,10 @@ const RainingHearts: React.FC = () => {
       bevelThickness: 0.2,
     };
 
-    const heartGeometry = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
+    const heartGeometry = new THREE.ExtrudeGeometry(
+      heartShape,
+      extrudeSettings,
+    );
     heartGeometry.scale(0.1, 0.1, 0.1);
     heartGeometry.rotateZ(Math.PI);
 
@@ -273,13 +211,13 @@ const RainingHearts: React.FC = () => {
       mesh.position.set(
         (Math.random() * 2 - 1) * 10,
         (Math.random() * 2 - 1) * 10,
-        Math.random() * 5 - 2.5
+        Math.random() * 5 - 2.5,
       );
 
       mesh.rotation.set(
         Math.random() * Math.PI,
         Math.random() * Math.PI,
-        Math.random() * Math.PI
+        Math.random() * Math.PI,
       );
 
       const scale = 0.5 + Math.random() * 1.0;
@@ -291,7 +229,7 @@ const RainingHearts: React.FC = () => {
         mesh,
         velocity: new THREE.Vector2(
           (Math.random() - 0.5) * 0.02,
-          Math.random() * 0.03 + 0.01
+          Math.random() * 0.03 + 0.01,
         ),
         acceleration: new THREE.Vector2(0, 0),
         mass: 0.1 + Math.random() * 0.9,
@@ -344,7 +282,9 @@ const RainingHearts: React.FC = () => {
         const left = parseFloat(heart.style.left);
 
         heart.style.top = `${top + 1 + Math.random()}px`;
-        heart.style.left = `${left + Math.sin(Date.now() * 0.001 + index) * 0.5}px`;
+        heart.style.left = `${
+          left + Math.sin(Date.now() * 0.001 + index) * 0.5
+        }px`;
 
         if (top > window.innerHeight) {
           heart.style.top = `-50px`;
@@ -385,11 +325,17 @@ const RainingHearts: React.FC = () => {
     timeRef.current = currentTime;
 
     if (isMouseDownRef.current) {
-      blackHoleStrengthRef.current = Math.min(1.0, blackHoleStrengthRef.current + deltaTime * 1.5);
+      blackHoleStrengthRef.current = Math.min(
+        1.0,
+        blackHoleStrengthRef.current + deltaTime * 1.5,
+      );
     }
 
     if (explosionStrengthRef.current > 0) {
-      explosionStrengthRef.current = Math.max(0, explosionStrengthRef.current - deltaTime * 1.0);
+      explosionStrengthRef.current = Math.max(
+        0,
+        explosionStrengthRef.current - deltaTime * 1.0,
+      );
     }
 
     orbitVariationTimeRef.current += deltaTime * 0.2;
@@ -411,7 +357,9 @@ const RainingHearts: React.FC = () => {
     vector.unproject(cameraRef.current!);
     const dir = vector.sub(cameraRef.current!.position).normalize();
     const distance = -cameraRef.current!.position.z / dir.z;
-    const mouseWorldPos = cameraRef.current!.position.clone().add(dir.multiplyScalar(distance));
+    const mouseWorldPos = cameraRef
+      .current!.position.clone()
+      .add(dir.multiplyScalar(distance));
 
     const coolGreen = new THREE.Color(0, 0.8, 0.4);
     const dangerRed = new THREE.Color(0.9, 0.1, 0.1);
@@ -422,7 +370,8 @@ const RainingHearts: React.FC = () => {
     const tempEmissive = new THREE.Color();
 
     heartParticlesRef.current.forEach((particle, index) => {
-      const { mesh, velocity, mass, orbitType, orbitPhase, orbitEccentricity } = particle;
+      const { mesh, velocity, mass, orbitType, orbitPhase, orbitEccentricity } =
+        particle;
 
       const gravityStrength = isMouseDownRef.current ? 0.01 : 0.05;
       particle.acceleration.set(0, -gravityStrength);
@@ -438,8 +387,9 @@ const RainingHearts: React.FC = () => {
         const bhDistanceSquared = bhDx * bhDx + bhDy * bhDy;
         const bhDistance = Math.sqrt(bhDistanceSquared);
 
-        const blackHoleAttraction = 0.4 * blackHoleStrengthRef.current / mass;
-        const bhForceMagnitude = blackHoleAttraction / Math.max(0.1, bhDistanceSquared / 3);
+        const blackHoleAttraction = (0.4 * blackHoleStrengthRef.current) / mass;
+        const bhForceMagnitude =
+          blackHoleAttraction / Math.max(0.1, bhDistanceSquared / 3);
 
         const cappedBhForce = Math.min(bhForceMagnitude, 1.0);
 
@@ -450,26 +400,32 @@ const RainingHearts: React.FC = () => {
 
         switch (orbitType) {
           case 0:
-            particle.acceleration.x += -bhDy * spiralStrength / bhDistance;
-            particle.acceleration.y += bhDx * spiralStrength / bhDistance;
+            particle.acceleration.x += (-bhDy * spiralStrength) / bhDistance;
+            particle.acceleration.y += (bhDx * spiralStrength) / bhDistance;
             break;
 
           case 1:
-            particle.acceleration.x += -bhDy * spiralStrength * 2 / bhDistance;
-            particle.acceleration.y += bhDx * spiralStrength * 2 / bhDistance;
+            particle.acceleration.x +=
+              (-bhDy * spiralStrength * 2) / bhDistance;
+            particle.acceleration.y += (bhDx * spiralStrength * 2) / bhDistance;
             break;
 
           case 2:
             const oscillation = Math.sin(timeRef.current * 3 + orbitPhase);
-            particle.acceleration.x += -bhDy * spiralStrength * oscillation / bhDistance;
-            particle.acceleration.y += bhDx * spiralStrength * oscillation / bhDistance;
+            particle.acceleration.x +=
+              (-bhDy * spiralStrength * oscillation) / bhDistance;
+            particle.acceleration.y +=
+              (bhDx * spiralStrength * oscillation) / bhDistance;
             break;
 
           case 3:
             const angle = Math.atan2(bhDy, bhDx);
-            const eccFactor = 1 + orbitEccentricity * Math.sin(angle * 2 + timeRef.current);
-            particle.acceleration.x += -bhDy * spiralStrength * eccFactor / bhDistance;
-            particle.acceleration.y += bhDx * spiralStrength * eccFactor / bhDistance;
+            const eccFactor =
+              1 + orbitEccentricity * Math.sin(angle * 2 + timeRef.current);
+            particle.acceleration.x +=
+              (-bhDy * spiralStrength * eccFactor) / bhDistance;
+            particle.acceleration.y +=
+              (bhDx * spiralStrength * eccFactor) / bhDistance;
             break;
         }
 
@@ -478,12 +434,12 @@ const RainingHearts: React.FC = () => {
         mesh.scale.set(
           baseScale * proximityFactor,
           baseScale * proximityFactor,
-          baseScale * proximityFactor
+          baseScale * proximityFactor,
         );
 
         const redFactor = Math.min(
           1.0,
-          blackHoleStrengthRef.current * (1.0 - Math.min(1.0, bhDistance / 8))
+          blackHoleStrengthRef.current * (1.0 - Math.min(1.0, bhDistance / 8)),
         );
 
         tempColor.copy(coolGreen).lerp(dangerRed, redFactor);
@@ -500,29 +456,34 @@ const RainingHearts: React.FC = () => {
         const expDistanceSquared = expDx * expDx + expDy * expDy;
         const expDistance = Math.sqrt(expDistanceSquared);
 
-        const explosionRepulsion = 2.0 * explosionStrengthRef.current / Math.sqrt(mass);
-        const expForceMagnitude = explosionRepulsion / Math.max(0.5, expDistance);
+        const explosionRepulsion =
+          (2.0 * explosionStrengthRef.current) / Math.sqrt(mass);
+        const expForceMagnitude =
+          explosionRepulsion / Math.max(0.5, expDistance);
 
         const cappedExpForce = Math.min(expForceMagnitude, 2.0);
-        particle.acceleration.x -= expDx * cappedExpForce / expDistance;
-        particle.acceleration.y -= expDy * cappedExpForce / expDistance;
+        particle.acceleration.x -= (expDx * cappedExpForce) / expDistance;
+        particle.acceleration.y -= (expDy * cappedExpForce) / expDistance;
 
         const spinStrength = 0.2 * explosionStrengthRef.current;
-        particle.acceleration.x += -expDy * spinStrength / expDistance;
-        particle.acceleration.y += expDx * spinStrength / expDistance;
+        particle.acceleration.x += (-expDy * spinStrength) / expDistance;
+        particle.acceleration.y += (expDx * spinStrength) / expDistance;
 
-        const scaleBoost = 1.0 + 0.5 * explosionStrengthRef.current * Math.random();
+        const scaleBoost =
+          1.0 + 0.5 * explosionStrengthRef.current * Math.random();
         const baseScale = 0.5 + mass * 0.5;
         mesh.scale.set(
           baseScale * scaleBoost,
           baseScale * scaleBoost,
-          baseScale * scaleBoost
+          baseScale * scaleBoost,
         );
 
         const coolDownFactor = explosionStrengthRef.current;
 
         tempColor.copy(dangerRed).lerp(coolGreen, 1 - coolDownFactor);
-        tempEmissive.copy(dangerRedEmissive).lerp(coolGreenEmissive, 1 - coolDownFactor);
+        tempEmissive
+          .copy(dangerRedEmissive)
+          .lerp(coolGreenEmissive, 1 - coolDownFactor);
 
         if (mesh.material instanceof THREE.MeshPhongMaterial) {
           mesh.material.color.copy(tempColor);
@@ -531,7 +492,8 @@ const RainingHearts: React.FC = () => {
         }
       } else if (distance > 0.5) {
         const attractionStrength = 0.1 / mass;
-        const forceMagnitude = attractionStrength / Math.max(0.1, distanceSquared);
+        const forceMagnitude =
+          attractionStrength / Math.max(0.1, distanceSquared);
 
         const cappedForce = Math.min(forceMagnitude, 0.3);
         particle.acceleration.x += dx * cappedForce;
@@ -548,22 +510,27 @@ const RainingHearts: React.FC = () => {
 
             case 1:
               const angle = Math.atan2(dy, dx);
-              const eccFactor = 1 + orbitEccentricity * Math.sin(angle * 2 + orbitPhase);
+              const eccFactor =
+                1 + orbitEccentricity * Math.sin(angle * 2 + orbitPhase);
               particle.acceleration.x += -dy * orbitalFactor * eccFactor;
               particle.acceleration.y += dx * orbitalFactor * eccFactor;
               break;
 
             case 2:
-              const phase = Math.atan2(dy, dx) + timeRef.current * 0.5 + orbitPhase;
+              const phase =
+                Math.atan2(dy, dx) + timeRef.current * 0.5 + orbitPhase;
               const figureFactor = Math.sin(phase * 2) * orbitalFactor;
               particle.acceleration.x += -dy * figureFactor;
               particle.acceleration.y += dx * figureFactor;
               break;
 
             case 3:
-              const vortexFactor = orbitalFactor * (1 + 0.5 * Math.sin(timeRef.current + index * 0.1));
+              const vortexFactor =
+                orbitalFactor *
+                (1 + 0.5 * Math.sin(timeRef.current + index * 0.1));
               const wobble = Math.sin(timeRef.current * 0.5 + orbitPhase);
-              particle.acceleration.x += -dy * vortexFactor + dx * wobble * 0.01;
+              particle.acceleration.x +=
+                -dy * vortexFactor + dx * wobble * 0.01;
               particle.acceleration.y += dx * vortexFactor + dy * wobble * 0.01;
               break;
           }
@@ -588,11 +555,11 @@ const RainingHearts: React.FC = () => {
         mesh.position.set(
           (Math.random() * 2 - 1) * 10,
           10,
-          Math.random() * 5 - 2.5
+          Math.random() * 5 - 2.5,
         );
         velocity.set(
           (Math.random() - 0.5) * 0.02,
-          -0.01 - Math.random() * 0.02
+          -0.01 - Math.random() * 0.02,
         );
       }
 
@@ -641,7 +608,7 @@ const RainingHearts: React.FC = () => {
     <div
       className="raining-hearts"
       ref={containerRef}
-      style={{ touchAction: 'none' }}
+      style={{ pointerEvents: 'none' }} // Ensure touch events pass through
     />
   );
 };
