@@ -304,19 +304,10 @@ main {
   display: grid;
   justify-items: center;
   gap: $element-gap-mobile;
-  background: $section-bg-secondary;
   padding: $inner-section-padding-mobile;
-  border-radius: 8px;
 
   @include respond-to(desktop) {
     padding: $inner-section-padding-desktop;
-    background: linear-gradient(
-      135deg,
-      $section-bg-primary,
-      $section-bg-secondary
-    );
-    border-radius: 16px;
-    box-shadow: 0 10px 30px $shadow-color;
   }
 
   h2 {
@@ -341,9 +332,6 @@ main {
     @include respond-to(desktop) {
       font-size: 2.2rem;
       letter-spacing: 0.05em;
-      background: rgba(255, 255, 255, 0.6);
-      padding: $element-gap-mobile $element-gap-desktop;
-      border-radius: 8px;
     }
   }
 }
@@ -354,9 +342,6 @@ main {
   justify-items: center;
   gap: 28px;
   padding: $inner-section-padding-mobile;
-  background: $section-bg-primary;
-  border-radius: 8px;
-  border: 1px solid $subtle-border;
   margin: 0 auto;
   max-width: 800px;
 
@@ -370,8 +355,6 @@ main {
     align-items: center;
     gap: 25px 60px;
     padding: $inner-section-padding-desktop;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px $shadow-color;
   }
 
   img {

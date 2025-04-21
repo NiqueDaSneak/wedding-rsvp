@@ -193,14 +193,14 @@ const RainingHearts: React.FC = () => {
 
     heartParticlesRef.current = [];
 
-    const coolGreen = new THREE.Color(0, 0.8, 0.4);
-    const coolGreenEmissive = new THREE.Color(0, 0.2, 0.1);
+    const coolGreen = new THREE.Color('#06402b'); // Changed from (0, 0.8, 0.4) to #06402b
+    const coolGreenEmissive = new THREE.Color(0.02, 0.1, 0.05);
 
     for (let i = 0; i < heartCount; i++) {
       const material = new THREE.MeshPhongMaterial({
         color: coolGreen,
         emissive: coolGreenEmissive,
-        specular: new THREE.Color(0.5, 1, 0.5),
+        specular: new THREE.Color(0.3, 0.6, 0.4),
         shininess: 100,
         transparent: true,
         opacity: 0.5 + Math.random() * 0.5,
@@ -361,9 +361,9 @@ const RainingHearts: React.FC = () => {
       .current!.position.clone()
       .add(dir.multiplyScalar(distance));
 
-    const coolGreen = new THREE.Color(0, 0.8, 0.4);
+    const coolGreen = new THREE.Color('#06402b'); // Changed to match createHeartParticles
     const dangerRed = new THREE.Color(0.9, 0.1, 0.1);
-    const coolGreenEmissive = new THREE.Color(0, 0.2, 0.1);
+    const coolGreenEmissive = new THREE.Color(0.02, 0.1, 0.05); // Changed to match createHeartParticles
     const dangerRedEmissive = new THREE.Color(0.3, 0, 0);
 
     const tempColor = new THREE.Color();
@@ -380,6 +380,34 @@ const RainingHearts: React.FC = () => {
       const dy = mouseWorldPos.y - mesh.position.y;
       const distanceSquared = dx * dx + dy * dy;
       const distance = Math.sqrt(distanceSquared);
+
+      // Add proximity color transition even before clicking
+      if (distance < 3) {
+        // Create a smooth transition from green to red based on proximity
+        const proximityFactor = 1 - Math.min(1, distance / 3);
+
+        // Apply color changes based on proximity
+        tempColor.copy(coolGreen).lerp(dangerRed, proximityFactor * 0.8);
+        tempEmissive
+          .copy(coolGreenEmissive)
+          .lerp(dangerRedEmissive, proximityFactor * 0.6);
+
+        if (mesh.material instanceof THREE.MeshPhongMaterial) {
+          mesh.material.color.copy(tempColor);
+          mesh.material.emissive.copy(tempEmissive);
+          mesh.material.shininess = 100 + proximityFactor * 70;
+        }
+      } else if (
+        !isMouseDownRef.current &&
+        explosionStrengthRef.current === 0
+      ) {
+        // Reset to default color when far from mouse
+        if (mesh.material instanceof THREE.MeshPhongMaterial) {
+          mesh.material.color.copy(coolGreen);
+          mesh.material.emissive.copy(coolGreenEmissive);
+          mesh.material.shininess = 100;
+        }
+      }
 
       if (isMouseDownRef.current && blackHoleStrengthRef.current > 0) {
         const bhDx = clickPositionRef.current.x - mesh.position.x;
