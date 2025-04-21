@@ -10,9 +10,12 @@ import SiteHeader from '../components/SiteHeader/SiteHeader';
 import WebGPUHashtag from '../components/WebGPUHashtag/WebGPUHashtag';
 import ColorPaletteGlissando from '../components/ColorPaletteGlissando/ColorPaletteGlissando';
 import RainingHearts from '../components/RainingHearts/RainingHearts';
+import RSVPForm from '../components/RSVPForm/RSVPForm';
 import Song from '../images/song.mp3';
 
 const IndexPage: React.FC<PageProps> = () => {
+  const [isRSVPFormOpen, setIsRSVPFormOpen] = React.useState(false);
+  
   // Define the color palette
   const colorPalette = [
     '#F0F0F0',
@@ -30,6 +33,18 @@ const IndexPage: React.FC<PageProps> = () => {
     '#202020',
   ];
 
+  const openRSVPForm = () => {
+    setIsRSVPFormOpen(true);
+    // Prevent body scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeRSVPForm = () => {
+    setIsRSVPFormOpen(false);
+    // Restore body scrolling when modal is closed
+    document.body.style.overflow = 'visible';
+  };
+
   return (
     <main>
       <RainingHearts />
@@ -46,7 +61,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <span>Sabigaynn</span>
         </h1>
       </section>
-      
+
       <section className="hashtag-section">
         <WebGPUHashtag hashtag="#itsclemmertime" />
       </section>
@@ -88,7 +103,7 @@ const IndexPage: React.FC<PageProps> = () => {
           alt="Dress code"
         />
         <h3>Dress Code</h3>
-        <p>Come dressed as a furry</p>
+        <p>Greyscale Color Palette</p>
         <p className="note">
           We kindly encourage our guests to wear these colors for our special
           day:
@@ -102,13 +117,16 @@ const IndexPage: React.FC<PageProps> = () => {
           Whilst we love little ones, we kindly request a child-free wedding. We
           hope that the advanced notice means you are still able to attend.
         </p>
-        <button>Click Here To RSVP</button>
+        <button onClick={openRSVPForm}>Click Here To RSVP</button>
         <p className="deadline">Kindly respond by June 4th, 2025</p>
         <img src={Last} alt="RSVP" />
         <p className="closing">
           We can't wait to share this wonderful day with you!
         </p>
       </section>
+      
+      {/* RSVP Form Modal */}
+      <RSVPForm isOpen={isRSVPFormOpen} onClose={closeRSVPForm} />
     </main>
   );
 };
