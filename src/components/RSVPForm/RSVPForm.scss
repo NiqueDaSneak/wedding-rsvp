@@ -202,6 +202,38 @@ $accent-color: #a0a0a0;
   }
 }
 
+.success-message {
+  text-align: center;
+  margin: 2rem 0;
+  animation: fadeIn 0.5s ease;
+  
+  h2 {
+    margin-bottom: 1.5rem;
+    color: #666;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  p {
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: $text-color;
+  }
+}
+
+.error-message {
+  color: #d32f2f;
+  margin-top: 1.2rem;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.75rem;
+  background-color: rgba(211, 47, 47, 0.08);
+  border-radius: 4px;
+  animation: fadeIn 0.3s ease;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

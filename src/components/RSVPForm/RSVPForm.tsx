@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import './RSVPForm.scss';
 
 interface RSVPFormProps {
@@ -25,6 +25,8 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
     attending: 'yes',
     message: '',
   });
+
+  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -59,7 +61,78 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmissionStatus('submitting');
+
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+
+      const dietaryRestrictionsArray = Object.entries(formState.dietaryRestrictions)
+        .filter(([_, isChecked]) => isChecked)
+        .map(([restriction]) => restriction);
+
+      if (dietaryRestrictionsArray.length > 0) {
+        formData.append('dietaryRestrictionsFormatted', dietaryRestrictionsArray.join(', '));
+      }
+
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      if (response.ok) {
+        setSubmissionStatus('success');
+        setFormState({
+          name: '',
+          email: '',
+          plusOneName: '',
+          hasPlusOne: false,
+          dietaryRestrictions: {
+            vegan: false,
+            vegetarian: false,
+            glutenFree: false,
+            dairyFree: false,
+            nutAllergy: false,
+            shellfish: false,
+            other: false,
+          },
+          otherDietaryRestrictions: '',
+          attending: 'yes',
+          message: '',
+        });
+      } else {
+        setSubmissionStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmissionStatus('error');
+    }
+  };
+
   if (!isOpen) return null;
+
+  if (submissionStatus === 'success') {
+    return (
+      <div className="rsvp-modal-overlay" onClick={onClose}>
+        <div className="rsvp-modal-content" onClick={(e) => e.stopPropagation()}>
+          <button className="close-button" onClick={onClose}>
+            ×
+          </button>
+          <div className="success-message">
+            <h2>Thank You!</h2>
+            <p>Your RSVP has been successfully submitted.</p>
+            <p>We can't wait to celebrate with you!</p>
+            <button className="submit-button" onClick={onClose}>
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="rsvp-modal-overlay" onClick={onClose}>
@@ -101,6 +174,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           className="rsvp-form"
           data-netlify="true"
           netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
         >
           {/* Required hidden fields for Netlify */}
           <input type="hidden" name="form-name" value="wedding-rsvp" />
@@ -268,9 +342,19 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
             />
           </div>
 
-          <button type="submit" className="submit-button">
-            Submit RSVP
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={submissionStatus === 'submitting'}
+          >
+            {submissionStatus === 'submitting' ? 'Submitting...' : 'Submit RSVP'}
           </button>
+
+          {submissionStatus === 'error' && (
+            <p className="error-message">
+              There was an error submitting your RSVP. Please try again or contact us directly.
+            </p>
+          )}
         </form>
       </div>
     </div>
