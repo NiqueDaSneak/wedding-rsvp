@@ -722,3 +722,20 @@ main {
     text-align: center;
   }
 }
+
+// Hashtag section
+.hashtag-section {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin: -5px 0 5px; // Significantly reduced margins (was -20px 0 20px)
+  padding: 0;
+  height: 120px; // Reduced from 180px
+  position: relative;
+  z-index: 5;
+
+  @include respond-to(desktop) {
+    margin: -10px 0 10px; // Reduced from -30px 0 30px
+    height: 140px; // Reduced from 200px
+  }
+}

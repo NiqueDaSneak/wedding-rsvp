@@ -46,6 +46,11 @@ const IndexPage: React.FC<PageProps> = () => {
           <span>Sabigaynn</span>
         </h1>
       </section>
+      
+      <section className="hashtag-section">
+        <WebGPUHashtag hashtag="#itsclemmertime" />
+      </section>
+
       <section className="invitation-section">
         <div className="wedding-audio-container">
           <p className="audio-title">Our First Dance Song</p>
