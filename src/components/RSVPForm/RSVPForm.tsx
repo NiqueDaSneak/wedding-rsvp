@@ -19,38 +19,42 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
       dairyFree: false,
       nutAllergy: false,
       shellfish: false,
-      other: false
+      other: false,
     },
     otherDietaryRestrictions: '',
     attending: 'yes',
-    message: ''
+    message: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value, type } = e.target;
-    
+
     if (type === 'checkbox') {
       const checkbox = e.target as HTMLInputElement;
       if (name.startsWith('dietary-')) {
         const restriction = name.replace('dietary-', '');
-        setFormState(prev => ({
+        setFormState((prev) => ({
           ...prev,
           dietaryRestrictions: {
             ...prev.dietaryRestrictions,
-            [restriction]: checkbox.checked
-          }
+            [restriction]: checkbox.checked,
+          },
         }));
       } else if (name === 'hasPlusOne') {
-        setFormState(prev => ({
+        setFormState((prev) => ({
           ...prev,
           hasPlusOne: checkbox.checked,
-          plusOneName: checkbox.checked ? prev.plusOneName : ''
+          plusOneName: checkbox.checked ? prev.plusOneName : '',
         }));
       }
     } else {
-      setFormState(prev => ({
+      setFormState((prev) => ({
         ...prev,
-        [name]: value
+        [name]: value,
       }));
     }
   };
@@ -59,14 +63,21 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className="rsvp-modal-overlay" onClick={onClose}>
-      <div className="rsvp-modal-content" onClick={e => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>×</button>
-        
+      <div className="rsvp-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="close-button" onClick={onClose}>
+          ×
+        </button>
+
         <h2>RSVP for Our Special Day</h2>
         <p className="rsvp-date">September 9, 2025</p>
-        
+
         {/* Hidden form that Netlify can parse at build time */}
-        <form name="wedding-rsvp" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <form
+          name="wedding-rsvp"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          hidden
+        >
           <input type="text" name="name" />
           <input type="email" name="email" />
           <input type="checkbox" name="hasPlusOne" />
@@ -82,7 +93,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           <select name="attending"></select>
           <textarea name="message"></textarea>
         </form>
-        
+
         {/* Actual form that gets rendered */}
         <form
           name="wedding-rsvp"
@@ -94,9 +105,11 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           {/* Required hidden fields for Netlify */}
           <input type="hidden" name="form-name" value="wedding-rsvp" />
           <p className="hidden">
-            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            <label>
+              Don't fill this out if you're human: <input name="bot-field" />
+            </label>
           </p>
-          
+
           <div className="form-group">
             <label htmlFor="name">Your Name*</label>
             <input
@@ -108,7 +121,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="email">Your Email*</label>
             <input
@@ -134,7 +147,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
               <option value="no">Regretfully Decline</option>
             </select>
           </div>
-          
+
           <div className="form-group checkbox-group">
             <label className="checkbox-container">
               <input
@@ -146,7 +159,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
               <span className="checkbox-text">I'm bringing a plus one</span>
             </label>
           </div>
-          
+
           {formState.hasPlusOne && (
             <div className="form-group">
               <label htmlFor="plusOneName">Plus One's Name</label>
@@ -159,7 +172,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
               />
             </div>
           )}
-          
+
           <div className="form-group">
             <label>Dietary Restrictions (if any)</label>
             <div className="dietary-options">
@@ -228,10 +241,12 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
               </label>
             </div>
           </div>
-          
+
           {formState.dietaryRestrictions.other && (
             <div className="form-group">
-              <label htmlFor="otherDietaryRestrictions">Please specify other dietary restrictions</label>
+              <label htmlFor="otherDietaryRestrictions">
+                Please specify other dietary restrictions
+              </label>
               <input
                 type="text"
                 id="otherDietaryRestrictions"
@@ -241,7 +256,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
               />
             </div>
           )}
-          
+
           <div className="form-group">
             <label htmlFor="message">Message for the couple (optional)</label>
             <textarea
@@ -252,8 +267,10 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
               rows={3}
             />
           </div>
-          
-          <button type="submit" className="submit-button">Submit RSVP</button>
+
+          <button type="submit" className="submit-button">
+            Submit RSVP
+          </button>
         </form>
       </div>
     </div>
