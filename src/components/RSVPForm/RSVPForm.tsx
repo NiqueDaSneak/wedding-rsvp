@@ -26,7 +26,9 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
     message: '',
   });
 
-  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [submissionStatus, setSubmissionStatus] = useState<
+    'idle' | 'submitting' | 'success' | 'error'
+  >('idle');
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -69,12 +71,17 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
       const form = e.currentTarget;
       const formData = new FormData(form);
 
-      const dietaryRestrictionsArray = Object.entries(formState.dietaryRestrictions)
+      const dietaryRestrictionsArray = Object.entries(
+        formState.dietaryRestrictions,
+      )
         .filter(([_, isChecked]) => isChecked)
         .map(([restriction]) => restriction);
 
       if (dietaryRestrictionsArray.length > 0) {
-        formData.append('dietaryRestrictionsFormatted', dietaryRestrictionsArray.join(', '));
+        formData.append(
+          'dietaryRestrictionsFormatted',
+          dietaryRestrictionsArray.join(', '),
+        );
       }
 
       const response = await fetch('/', {
@@ -117,7 +124,10 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
   if (submissionStatus === 'success') {
     return (
       <div className="rsvp-modal-overlay" onClick={onClose}>
-        <div className="rsvp-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="rsvp-modal-content"
+          onClick={(e) => e.stopPropagation()}
+        >
           <button className="close-button" onClick={onClose}>
             ×
           </button>
@@ -347,12 +357,15 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
             className="submit-button"
             disabled={submissionStatus === 'submitting'}
           >
-            {submissionStatus === 'submitting' ? 'Submitting...' : 'Submit RSVP'}
+            {submissionStatus === 'submitting'
+              ? 'Submitting...'
+              : 'Submit RSVP'}
           </button>
 
           {submissionStatus === 'error' && (
             <p className="error-message">
-              There was an error submitting your RSVP. Please try again or contact us directly.
+              There was an error submitting your RSVP. Please try again or
+              contact us directly.
             </p>
           )}
         </form>

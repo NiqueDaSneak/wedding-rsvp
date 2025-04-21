@@ -49,7 +49,7 @@ $accent-color: #a0a0a0;
     text-align: center;
     margin: 0 0 0.5rem;
     font-weight: 400;
-    
+
     @media (min-width: 768px) {
       font-size: 2.5rem;
     }
@@ -92,7 +92,7 @@ $accent-color: #a0a0a0;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  
+
   .hidden {
     display: none;
   }
@@ -109,7 +109,9 @@ $accent-color: #a0a0a0;
     color: $text-color;
   }
 
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     padding: 0.8rem 1rem;
     border: 1px solid $input-border;
     border-radius: 6px;
@@ -144,7 +146,7 @@ $accent-color: #a0a0a0;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     width: 18px;
     height: 18px;
     cursor: pointer;
@@ -179,11 +181,11 @@ $accent-color: #a0a0a0;
   cursor: pointer;
   margin-top: 1rem;
   transition: background-color 0.2s, transform 0.1s;
-  
+
   &:hover {
     background-color: #585858;
   }
-  
+
   &:active {
     transform: translateY(1px);
   }
@@ -206,13 +208,13 @@ $accent-color: #a0a0a0;
   text-align: center;
   margin: 2rem 0;
   animation: fadeIn 0.5s ease;
-  
+
   h2 {
     margin-bottom: 1.5rem;
     color: #666;
     font-family: 'Playfair Display', serif;
   }
-  
+
   p {
     margin-bottom: 1.2rem;
     font-size: 1.1rem;

@@ -15,7 +15,7 @@ import Song from '../images/song.mp3';
 
 const IndexPage: React.FC<PageProps> = () => {
   const [isRSVPFormOpen, setIsRSVPFormOpen] = React.useState(false);
-  
+
   // Define the color palette
   const colorPalette = [
     '#F0F0F0',
@@ -124,7 +124,7 @@ const IndexPage: React.FC<PageProps> = () => {
           We can't wait to share this wonderful day with you!
         </p>
       </section>
-      
+
       {/* RSVP Form Modal */}
       <RSVPForm isOpen={isRSVPFormOpen} onClose={closeRSVPForm} />
     </main>
