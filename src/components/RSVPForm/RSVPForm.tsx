@@ -179,7 +179,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
 
         {/* Actual form that gets rendered */}
         <form
-          name="wedding-rsvp"
+          name="wedding"
           method="POST"
           className="rsvp-form"
           data-netlify="true"
@@ -187,7 +187,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           onSubmit={handleSubmit}
         >
           {/* Required hidden fields for Netlify */}
-          <input type="hidden" name="form-name" value="wedding-rsvp" />
+          <input type="hidden" name="form-name" value="wedding" />
           <p className="hidden">
             <label>
               Don't fill this out if you're human: <input name="bot-field" />
