@@ -19,19 +19,18 @@ const IndexPage: React.FC<PageProps> = () => {
 
   // Define the color palette
   const colorPalette = [
-    '#F0F0F0',
-    '#E0E0E0',
     '#D0D0D0',
-    '#C8C8C8',
+    '#C0C0C0',
     '#B8B8B8',
-    '#A0A0A0',
+    '#A8A8A8',
+    '#989898',
     '#888888',
     '#787878',
-    '#707070',
+    '#686868',
     '#585858',
-    '#404040',
-    '#303030',
-    '#202020',
+    '#484848',
+    '#383838',
+    '#2A2A2A', // Ending with a dark grey instead of near-black
   ];
 
   const openRSVPForm = () => {
@@ -69,7 +68,6 @@ const IndexPage: React.FC<PageProps> = () => {
 
       <section className="invitation-section">
         <div className="wedding-audio-container">
-          <p className="audio-title">Our First Dance Song</p>
           <audio src={Song} controls className="wedding-audio-player" />
           <p className="audio-caption">
             Listen to the song that captures our love story

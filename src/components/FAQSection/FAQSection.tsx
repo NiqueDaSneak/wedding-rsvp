@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FAQSection.scss';
 import FAQAccordion from '../FAQAccordion/FAQAccordion';
-import { FaPlane, FaBed, FaCar, FaCalendarAlt } from 'react-icons/fa';
+import { FaPlane, FaBed, FaCar, FaCalendarAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 interface FAQSectionProps {
   // Additional props if needed
 }
 
 const FAQSection: React.FC<FAQSectionProps> = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleFAQs = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   // Travel FAQs
   const travelFAQs = [
     {
@@ -157,7 +163,23 @@ const FAQSection: React.FC<FAQSectionProps> = () => {
         </p>
       </div>
 
-      <div className="faq-grid">
+      <button 
+        className={`faq-toggle-button ${isExpanded ? 'expanded' : ''}`} 
+        onClick={toggleFAQs}
+        aria-expanded={isExpanded}
+        aria-controls="faq-content"
+      >
+        {isExpanded ? 'Hide FAQs' : 'View FAQs'}
+        <span className="toggle-icon">
+          {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
+        </span>
+      </button>
+
+      <div 
+        id="faq-content"
+        className={`faq-grid ${isExpanded ? 'expanded' : ''}`}
+        aria-hidden={!isExpanded}
+      >
         <div className="faq-grid-item">
           <FAQAccordion title="Travel" items={travelFAQs} icon={<FaPlane />} />
         </div>
