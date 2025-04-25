@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import './FAQSection.scss';
 import FAQAccordion from '../FAQAccordion/FAQAccordion';
-import { FaPlane, FaBed, FaCar, FaCalendarAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import {
+  FaPlane,
+  FaBed,
+  FaCar,
+  FaCalendarAlt,
+  FaChevronDown,
+  FaChevronUp,
+} from 'react-icons/fa';
 
 interface FAQSectionProps {
   // Additional props if needed
@@ -163,8 +170,8 @@ const FAQSection: React.FC<FAQSectionProps> = () => {
         </p>
       </div>
 
-      <button 
-        className={`faq-toggle-button ${isExpanded ? 'expanded' : ''}`} 
+      <button
+        className={`faq-toggle-button ${isExpanded ? 'expanded' : ''}`}
         onClick={toggleFAQs}
         aria-expanded={isExpanded}
         aria-controls="faq-content"
@@ -175,7 +182,7 @@ const FAQSection: React.FC<FAQSectionProps> = () => {
         </span>
       </button>
 
-      <div 
+      <div
         id="faq-content"
         className={`faq-grid ${isExpanded ? 'expanded' : ''}`}
         aria-hidden={!isExpanded}
