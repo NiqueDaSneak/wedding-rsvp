@@ -68,8 +68,24 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
     setSubmissionStatus('submitting');
 
     try {
-      const form = e.currentTarget;
-      const formData = new FormData(form);
+      // Create an object with all form data
+      const formData = {
+        'form-name': 'wedding-rsvp', // This must match the form name in the static HTML file
+        name: formState.name,
+        email: formState.email,
+        hasPlusOne: formState.hasPlusOne,
+        plusOneName: formState.plusOneName,
+        attending: formState.attending,
+        message: formState.message,
+        'dietary-vegan': formState.dietaryRestrictions.vegan,
+        'dietary-vegetarian': formState.dietaryRestrictions.vegetarian,
+        'dietary-glutenFree': formState.dietaryRestrictions.glutenFree,
+        'dietary-dairyFree': formState.dietaryRestrictions.dairyFree,
+        'dietary-nutAllergy': formState.dietaryRestrictions.nutAllergy,
+        'dietary-shellfish': formState.dietaryRestrictions.shellfish,
+        'dietary-other': formState.dietaryRestrictions.other,
+        otherDietaryRestrictions: formState.otherDietaryRestrictions,
+      };
 
       const dietaryRestrictionsArray = Object.entries(
         formState.dietaryRestrictions,
@@ -78,16 +94,21 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
         .map(([restriction]) => restriction);
 
       if (dietaryRestrictionsArray.length > 0) {
-        formData.append(
-          'dietaryRestrictionsFormatted',
-          dietaryRestrictionsArray.join(', '),
-        );
+        formData['dietaryRestrictionsFormatted'] = 
+          dietaryRestrictionsArray.join(', ');
       }
+
+      // Encode the data for application/x-www-form-urlencoded format
+      const encodedData = Object.keys(formData)
+        .map(key => 
+          encodeURIComponent(key) + '=' + encodeURIComponent(String(formData[key as keyof typeof formData]))
+        )
+        .join('&');
 
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+        body: encodedData,
       });
 
       if (response.ok) {
@@ -111,6 +132,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           message: '',
         });
       } else {
+        console.error('Form submission error:', response.status, response.statusText);
         setSubmissionStatus('error');
       }
     } catch (error) {
@@ -154,32 +176,9 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
         <h2>RSVP for Our Special Day</h2>
         <p className="rsvp-date">September 9, 2025</p>
 
-        {/* Hidden form that Netlify can parse at build time */}
-        <form
-          name="wedding-rsvp"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          hidden
-        >
-          <input type="text" name="name" />
-          <input type="email" name="email" />
-          <input type="checkbox" name="hasPlusOne" />
-          <input type="text" name="plusOneName" />
-          <input type="checkbox" name="dietary-vegan" />
-          <input type="checkbox" name="dietary-vegetarian" />
-          <input type="checkbox" name="dietary-glutenFree" />
-          <input type="checkbox" name="dietary-dairyFree" />
-          <input type="checkbox" name="dietary-nutAllergy" />
-          <input type="checkbox" name="dietary-shellfish" />
-          <input type="checkbox" name="dietary-other" />
-          <input type="text" name="otherDietaryRestrictions" />
-          <select name="attending"></select>
-          <textarea name="message"></textarea>
-        </form>
-
         {/* Actual form that gets rendered */}
         <form
-          name="wedding"
+          name="wedding-rsvp"
           method="POST"
           className="rsvp-form"
           data-netlify="true"
@@ -187,7 +186,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           onSubmit={handleSubmit}
         >
           {/* Required hidden fields for Netlify */}
-          <input type="hidden" name="form-name" value="wedding" />
+          <input type="hidden" name="form-name" value="wedding-rsvp" />
           <p className="hidden">
             <label>
               Don't fill this out if you're human: <input name="bot-field" />

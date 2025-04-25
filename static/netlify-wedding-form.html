@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Netlify Form Detection</title>
+</head>
+<body>
+  <!-- This file exists only for Netlify to detect the form fields at build time -->
+  <form name="wedding-rsvp" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="checkbox" name="hasPlusOne" />
+    <input type="text" name="plusOneName" />
+    <input type="checkbox" name="dietary-vegan" />
+    <input type="checkbox" name="dietary-vegetarian" />
+    <input type="checkbox" name="dietary-glutenFree" />
+    <input type="checkbox" name="dietary-dairyFree" />
+    <input type="checkbox" name="dietary-nutAllergy" />
+    <input type="checkbox" name="dietary-shellfish" />
+    <input type="checkbox" name="dietary-other" />
+    <input type="text" name="otherDietaryRestrictions" />
+    <select name="attending">
+      <option value="yes">Joyfully Accept</option>
+      <option value="no">Regretfully Decline</option>
+    </select>
+    <textarea name="message"></textarea>
+    <input type="hidden" name="dietaryRestrictionsFormatted" />
+  </form>
+</body>
+</html>
