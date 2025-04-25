@@ -11,6 +11,7 @@ import WebGPUHashtag from '../components/WebGPUHashtag/WebGPUHashtag';
 import ColorPaletteGlissando from '../components/ColorPaletteGlissando/ColorPaletteGlissando';
 import RainingHearts from '../components/RainingHearts/RainingHearts';
 import RSVPForm from '../components/RSVPForm/RSVPForm';
+import FAQSection from '../components/FAQSection/FAQSection';
 import Song from '../images/song.mp3';
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -110,6 +111,9 @@ const IndexPage: React.FC<PageProps> = () => {
         </p>
         <ColorPaletteGlissando colors={colorPalette} />
       </section>
+
+      {/* Add the FAQ Section here */}
+      <FAQSection />
 
       <section className="rsvp-section">
         <h2>RSVP</h2>

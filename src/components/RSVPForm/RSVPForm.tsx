@@ -94,14 +94,17 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
         .map(([restriction]) => restriction);
 
       if (dietaryRestrictionsArray.length > 0) {
-        formData['dietaryRestrictionsFormatted'] = 
+        formData['dietaryRestrictionsFormatted'] =
           dietaryRestrictionsArray.join(', ');
       }
 
       // Encode the data for application/x-www-form-urlencoded format
       const encodedData = Object.keys(formData)
-        .map(key => 
-          encodeURIComponent(key) + '=' + encodeURIComponent(String(formData[key as keyof typeof formData]))
+        .map(
+          (key) =>
+            encodeURIComponent(key) +
+            '=' +
+            encodeURIComponent(String(formData[key as keyof typeof formData])),
         )
         .join('&');
 
@@ -132,7 +135,11 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           message: '',
         });
       } else {
-        console.error('Form submission error:', response.status, response.statusText);
+        console.error(
+          'Form submission error:',
+          response.status,
+          response.statusText,
+        );
         setSubmissionStatus('error');
       }
     } catch (error) {
