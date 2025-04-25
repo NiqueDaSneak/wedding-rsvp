@@ -13,6 +13,8 @@ import RainingHearts from '../components/RainingHearts/RainingHearts';
 import RSVPForm from '../components/RSVPForm/RSVPForm';
 import FAQSection from '../components/FAQSection/FAQSection';
 import Song from '../images/song.mp3';
+// Import only the components we're using
+import { AnimatedImage, RandomRevealImage } from '../components/ImageEffects';
 
 const IndexPage: React.FC<PageProps> = () => {
   const [isRSVPFormOpen, setIsRSVPFormOpen] = React.useState(false);
@@ -48,6 +50,8 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <main>
       <RainingHearts />
+
+      {/* Hero section remains unchanged */}
       <section
         className="hero-section"
         style={{
@@ -78,7 +82,13 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <section className="about-section">
-        <img src={AnImage} alt="Couple" />
+        {/* Replace with RandomRevealImage for family and friends photo */}
+        <RandomRevealImage
+          src={AnImage}
+          alt="Couple"
+          className="animated-breath"
+          distance={150}
+        />
         <h3>Family and Friends</h3>
         <p>
           We are thrilled to invite you to our wedding celebration, where love
@@ -96,10 +106,12 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <section className="dress-code-section">
-        <img
-          style={{ filter: 'grayscale(1)' }}
+        {/* Replace with RandomRevealImage for dress code photo */}
+        <RandomRevealImage
           src={ColorScheme}
           alt="Dress code"
+          className="grayscale-img"
+          distance={120}
         />
         <h3>Dress Code</h3>
         <p>Greyscale Color Palette</p>
@@ -121,7 +133,10 @@ const IndexPage: React.FC<PageProps> = () => {
         </p>
         <button onClick={openRSVPForm}>Click Here To RSVP</button>
         <p className="deadline">Kindly respond by June 4th, 2025</p>
-        <img src={Last} alt="RSVP" />
+
+        {/* Replace with RandomRevealImage for RSVP photo */}
+        <RandomRevealImage src={Last} alt="RSVP" distance={180} />
+
         <p className="closing">
           We can't wait to share this wonderful day with you!
         </p>

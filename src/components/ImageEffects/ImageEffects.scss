@@ -1,0 +1,106 @@
+// Image Effects SCSS
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  .parallax-inner {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+  }
+}
+
+.animated-image-container {
+  overflow: hidden;
+  border-radius: 4px;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+
+  .animated-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.reveal-image-wrapper {
+  width: 100%;
+  position: relative;
+
+  .reveal-image-container {
+    width: 100%;
+    position: relative;
+
+    .reveal-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+.masked-image-container {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+
+  .masked-image {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+.transition-image-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: 4px;
+
+  .transition-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.grayscale-img {
+  .reveal-image-container img,
+  img {
+    filter: grayscale(1);
+  }
+}
+
+.animated-breath {
+  img {
+    animation: breathing 4s infinite ease-in-out;
+  }
+}
+
+@keyframes breathing {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
