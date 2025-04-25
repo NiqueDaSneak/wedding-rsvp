@@ -12,6 +12,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
     email: '',
     plusOneName: '',
     hasPlusOne: false,
+    attendingBrunch: false,
     dietaryRestrictions: {
       vegan: false,
       vegetarian: false,
@@ -54,6 +55,11 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           hasPlusOne: checkbox.checked,
           plusOneName: checkbox.checked ? prev.plusOneName : '',
         }));
+      } else if (name === 'attendingBrunch') {
+        setFormState((prev) => ({
+          ...prev,
+          attendingBrunch: checkbox.checked,
+        }));
       }
     } else {
       setFormState((prev) => ({
@@ -76,6 +82,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
         hasPlusOne: formState.hasPlusOne,
         plusOneName: formState.plusOneName,
         attending: formState.attending,
+        attendingBrunch: formState.attendingBrunch,
         message: formState.message,
         'dietary-vegan': formState.dietaryRestrictions.vegan,
         'dietary-vegetarian': formState.dietaryRestrictions.vegetarian,
@@ -121,6 +128,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
           email: '',
           plusOneName: '',
           hasPlusOne: false,
+          attendingBrunch: false,
           dietaryRestrictions: {
             vegan: false,
             vegetarian: false,
@@ -260,6 +268,21 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
                 value={formState.plusOneName}
                 onChange={handleChange}
               />
+            </div>
+          )}
+
+          {formState.attending === 'yes' && (
+            <div className="form-group checkbox-group">
+              <label className="checkbox-container">
+                <input
+                  type="checkbox"
+                  name="attendingBrunch"
+                  checked={formState.attendingBrunch}
+                  onChange={handleChange}
+                />
+                <span className="checkbox-text">I'll also attend the Sunday Brunch</span>
+              </label>
+              <p className="brunch-info">Join us for a relaxed brunch on Sunday to continue the celebration!</p>
             </div>
           )}
 
