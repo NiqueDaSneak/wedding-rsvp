@@ -280,9 +280,14 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ isOpen, onClose }) => {
                   checked={formState.attendingBrunch}
                   onChange={handleChange}
                 />
-                <span className="checkbox-text">I'll also attend the Sunday Brunch</span>
+                <span className="checkbox-text">
+                  I'll also attend the Sunday Brunch
+                </span>
               </label>
-              <p className="brunch-info">Join us for a relaxed brunch on Sunday to continue the celebration!</p>
+              <p className="brunch-info">
+                Join us for a relaxed brunch on Sunday to continue the
+                celebration!
+              </p>
             </div>
           )}
 

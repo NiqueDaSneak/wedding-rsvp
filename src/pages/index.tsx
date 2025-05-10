@@ -13,37 +13,18 @@ import RainingHearts from '../components/RainingHearts/RainingHearts';
 import RSVPForm from '../components/RSVPForm/RSVPForm';
 import FAQSection from '../components/FAQSection/FAQSection';
 import Song from '../images/song.mp3';
-// Import only the components we're using
 import { AnimatedImage, RandomRevealImage } from '../components/ImageEffects';
 
 const IndexPage: React.FC<PageProps> = () => {
   const [isRSVPFormOpen, setIsRSVPFormOpen] = React.useState(false);
 
-  // Define the color palette
-  const colorPalette = [
-    '#D0D0D0',
-    '#C0C0C0',
-    '#B8B8B8',
-    '#A8A8A8',
-    '#989898',
-    '#888888',
-    '#787878',
-    '#686868',
-    '#585858',
-    '#484848',
-    '#383838',
-    '#2A2A2A', // Ending with a dark grey instead of near-black
-  ];
-
   const openRSVPForm = () => {
     setIsRSVPFormOpen(true);
-    // Prevent body scrolling when modal is open
     document.body.style.overflow = 'hidden';
   };
 
   const closeRSVPForm = () => {
     setIsRSVPFormOpen(false);
-    // Restore body scrolling when modal is closed
     document.body.style.overflow = 'visible';
   };
 
@@ -51,14 +32,7 @@ const IndexPage: React.FC<PageProps> = () => {
     <main>
       <RainingHearts />
 
-      {/* Hero section remains unchanged */}
-      <section
-        className="hero-section"
-        style={{
-          backgroundImage: `url(${Hero})`,
-          // filter: 'blur(1px)'
-        }}
-      >
+      <section className="hero-section" style={{ backgroundImage: `url(${Hero})` }}>
         <h1>
           <span>Dominique</span>
           <span className="ampersand">&</span>
@@ -73,28 +47,19 @@ const IndexPage: React.FC<PageProps> = () => {
       <section className="invitation-section">
         <div className="wedding-audio-container">
           <audio src={Song} controls className="wedding-audio-player" />
-          <p className="audio-caption">
-            Listen to the song that captures our love story
-          </p>
+          <p className="audio-caption">Listen to the song that captures our love story</p>
         </div>
         <h2>We joyfully invite you to the celebration of our marriage</h2>
         <p className="date">SEPTEMBER 9, 2025</p>
+        <p className="animated-date">9/9/9</p>
       </section>
 
       <section className="about-section">
-        {/* Replace with RandomRevealImage for family and friends photo */}
-        <RandomRevealImage
-          src={AnImage}
-          alt="Couple"
-          className="animated-breath"
-          distance={150}
-        />
+        <RandomRevealImage src={AnImage} alt="Family and Friends" className="animated-breath" distance={150} />
         <h3>Family and Friends</h3>
         <p>
-          We are thrilled to invite you to our wedding celebration, where love
-          and laughter await. As we exchange our vows and embark on this
-          beautiful journey together, your presence would mean the world to us
-          as we celebrate this special day.
+          We are thrilled to invite you to our wedding celebration, where love and laughter await. Your presence
+          would mean the world to us as we celebrate this special day.
         </p>
       </section>
 
@@ -106,43 +71,28 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <section className="dress-code-section">
-        {/* Replace with RandomRevealImage for dress code photo */}
-        <RandomRevealImage
-          src={ColorScheme}
-          alt="Dress code"
-          className="grayscale-img"
-          distance={120}
-        />
+        <RandomRevealImage src={ColorScheme} alt="Outdoor Setting" className="grayscale-img" distance={120} />
         <h3>Dress Code</h3>
-        <p>Greyscale Color Palette</p>
-        <p className="note">
-          We kindly encourage our guests to wear these colors for our special
-          day:
+        <p>
+          Please note that the event will be held outdoors on grass. We recommend wearing comfortable shoes
+          suitable for the terrain.
         </p>
-        <ColorPaletteGlissando colors={colorPalette} />
       </section>
 
-      {/* Add the FAQ Section here */}
       <FAQSection />
 
       <section className="rsvp-section">
         <h2>RSVP</h2>
         <p className="notice">
-          Whilst we love little ones, we kindly request a child-free wedding. We
-          hope that the advanced notice means you are still able to attend.
+          Whilst we love little ones, we kindly request a child-free wedding. We hope that the advanced notice
+          means you are still able to attend.
         </p>
         <button onClick={openRSVPForm}>Click Here To RSVP</button>
         <p className="deadline">Kindly respond by June 4th, 2025</p>
-
-        {/* Replace with RandomRevealImage for RSVP photo */}
         <RandomRevealImage src={Last} alt="RSVP" distance={180} />
-
-        <p className="closing">
-          We can't wait to share this wonderful day with you!
-        </p>
+        <p className="closing">We can't wait to share this wonderful day with you!</p>
       </section>
 
-      {/* RSVP Form Modal */}
       <RSVPForm isOpen={isRSVPFormOpen} onClose={closeRSVPForm} />
     </main>
   );
@@ -155,11 +105,7 @@ export const Head: HeadFC = () => (
     <title>D&S Wedding Invitation</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossOrigin="anonymous"
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
