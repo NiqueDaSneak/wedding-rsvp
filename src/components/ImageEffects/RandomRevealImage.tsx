@@ -3,6 +3,9 @@ import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import './ImageEffects.scss';
 
+// Add a limit to the number of visible animations
+const MAX_VISIBLE_IMAGES = 5;
+
 interface RandomRevealImageProps {
   src: string;
   alt: string;
@@ -21,6 +24,24 @@ const RandomRevealImage: React.FC<RandomRevealImageProps> = ({
     threshold: 0.2,
     triggerOnce: true,
   });
+
+  // Track the number of visible images
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    if (inView && visibleCount < MAX_VISIBLE_IMAGES) {
+      setVisibleCount((count) => count + 1);
+    }
+    return () => {
+      if (inView) {
+        setVisibleCount((count) => Math.max(0, count - 1));
+      }
+    };
+  }, [inView]);
+
+  if (visibleCount >= MAX_VISIBLE_IMAGES) {
+    return null; // Skip rendering if the limit is reached
+  }
 
   // Calculate a random angle on component mount
   useEffect(() => {

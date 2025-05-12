@@ -10,7 +10,7 @@ const ParticleSwirl: React.FC = () => {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -30,10 +30,7 @@ const ParticleSwirl: React.FC = () => {
       positions[i * 3 + 2] = Math.random() * 2 - 1;
     }
 
-    particles.setAttribute(
-      'position',
-      new THREE.BufferAttribute(positions, 3)
-    );
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const particleMaterial = new THREE.PointsMaterial({
       color: 0xffffff,

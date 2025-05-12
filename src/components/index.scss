@@ -1,1 +1,86 @@
 @import './mixins.scss';
+
+// Shared typography styles
+$header-font: 'Playfair Display', serif;
+$body-font: 'Cormorant Garamond', serif;
+
+@mixin header-style($font-size, $font-weight: 400) {
+  font-family: $header-font;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  margin: 0;
+}
+
+@mixin body-style($font-size, $line-height: 1.8) {
+  font-family: $body-font;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+// Shared section styles
+@mixin section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+@mixin section-heading {
+  @include header-style(2.5rem);
+  position: relative;
+  margin-bottom: 20px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: $accent-color;
+    opacity: 0.4;
+  }
+}
+
+@mixin section-body {
+  @include body-style(1.4rem);
+}
+
+@mixin section-button {
+  background: transparent;
+  border: 1px solid $text-color;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px $shadow-color;
+  }
+}
+
+@mixin section-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+// Example usage in sections
+h2,
+h3 {
+  @include header-style(2.5rem);
+}
+
+p {
+  @include body-style(1.4rem);
+}

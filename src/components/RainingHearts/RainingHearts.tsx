@@ -55,9 +55,7 @@ const RainingHearts: React.FC = () => {
     fallbackRef.current = !isWebGLSupported;
 
     isTouchDeviceRef.current =
-      'ontouchstart' in window ||
-      navigator.maxTouchPoints > 0 ||
-      navigator.msMaxTouchPoints > 0;
+      'ontouchstart' in window || navigator.maxTouchPoints > 0; // Removed 'msMaxTouchPoints'
 
     if (fallbackRef.current) {
       createCSSHearts();
@@ -135,7 +133,7 @@ const RainingHearts: React.FC = () => {
       antialias: true,
       powerPreference: 'high-performance',
     });
-    renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
+    renderer.setPixelRatio(window.devicePixelRatio > 1 ? 1.5 : 1); // Reduced from 2
     renderer.setSize(dimensionsRef.current.width, dimensionsRef.current.height);
     renderer.setClearColor(0x000000, 0);
     containerRef.current.appendChild(renderer.domElement);
@@ -188,8 +186,8 @@ const RainingHearts: React.FC = () => {
 
     const isMobile = window.innerWidth < 768;
     const heartCount = isMobile
-      ? Math.min(20, Math.floor(dimensionsRef.current.width / 80))
-      : Math.min(30, Math.floor(dimensionsRef.current.width / 60));
+      ? Math.min(10, Math.floor(dimensionsRef.current.width / 100)) // Reduced from 20
+      : Math.min(15, Math.floor(dimensionsRef.current.width / 80)); // Reduced from 30
 
     heartParticlesRef.current = [];
 

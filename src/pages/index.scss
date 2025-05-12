@@ -237,12 +237,7 @@ main {
 
 // About section
 .about-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 20px;
-  padding: 40px 20px;
+  @include section-container;
 
   @include respond-to(desktop) {
     flex-direction: row;
@@ -252,30 +247,18 @@ main {
   }
 
   img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    @include section-image;
   }
 
   .content {
     max-width: 600px;
 
     h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      text-align: center;
-
-      @include respond-to(desktop) {
-        text-align: left;
-      }
+      @include section-heading;
     }
 
     p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      line-height: 1.8;
+      @include section-body;
     }
   }
 }
@@ -319,209 +302,53 @@ main {
 
 // Dress code section
 .dress-code-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 20px;
-  padding: 40px 20px;
+  @include section-container;
 
   @include respond-to(desktop) {
-    flex-direction: row;
-    text-align: left;
-    gap: 40px;
-    padding: 60px 40px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  h3 {
+    @include section-heading;
+  }
+
+  p {
+    @include section-body;
   }
 
   img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  .content {
-    max-width: 600px;
-
-    h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      text-align: center;
-
-      @include respond-to(desktop) {
-        text-align: left;
-      }
-    }
-
-    p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      line-height: 1.8;
-    }
+    @include section-image;
+    margin: 0 auto;
   }
 }
 
 // RSVP section
 .rsvp-section {
-  display: grid;
-  justify-items: center;
-  gap: 25px;
-  padding: 50px $padding-mobile;
-  background: $section-bg-secondary;
-  border-radius: 8px;
-  border: 1px solid $subtle-border;
-  margin: 0 auto;
-  max-width: 800px;
+  @include section-container;
 
   @include respond-to(desktop) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      'heading heading'
-      'notice notice'
-      'button button'
-      'deadline deadline'
-      'image closing';
-    padding: 70px;
-    gap: $element-gap-desktop;
+    flex-direction: column;
     align-items: center;
-    box-shadow: 0 10px 30px $shadow-color;
+    text-align: center;
   }
 
   h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    margin: 0;
-    position: relative;
-    padding-bottom: $element-gap-mobile - 2px;
-    text-align: center;
-
-    @include respond-to(desktop) {
-      grid-area: heading;
-      font-size: 2.8rem;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 2px;
-      background: $accent-color;
-      opacity: 0.4;
-      @include respond-to(desktop) {
-        width: 100px;
-      }
-    }
+    @include section-heading;
   }
 
   p {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    line-height: 1.8;
-    text-align: center;
-
-    &.notice {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: darken($text-color, 5%);
-
-      @include respond-to(desktop) {
-        grid-area: notice;
-        font-size: 1.5rem;
-        max-width: 80%;
-        margin: 0 auto;
-      }
-    }
-
-    &.deadline {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      color: #777;
-      margin: 0;
-
-      @include respond-to(desktop) {
-        grid-area: deadline;
-        font-size: 1rem;
-      }
-    }
-
-    &.closing {
-      font-size: 1.4rem;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-
-      @include respond-to(desktop) {
-        grid-area: closing;
-        font-size: 1.6rem;
-        text-align: left;
-        align-self: center;
-      }
-    }
+    @include section-body;
   }
 
   button {
-    background: transparent;
-    border: 1px solid $text-color;
-    padding: 12px 28px;
-    font-size: 0.95rem;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: $element-gap-mobile / 2 0;
-    position: relative;
-    overflow: hidden;
-
-    @include respond-to(desktop) {
-      grid-area: button;
-      padding: 16px 32px;
-      font-size: 1.1rem;
-      border-width: 2px;
-      letter-spacing: 0.2em;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.05);
-        transition: transform 0.5s ease;
-      }
-    }
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.05);
-
-      @include respond-to(desktop) {
-        background: transparent;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px $shadow-color;
-
-        &::before {
-          transform: translateX(100%);
-        }
-      }
-    }
+    @include section-button;
   }
 
   img {
-    width: 65%; // Increased from 40% to 65% for better visibility on mobile
-    border-radius: 14%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin: $element-gap-mobile 0;
-
-    @include respond-to(desktop) {
-      grid-area: image;
-      width: 80%;
-      margin: 0;
-    }
+    @include section-image;
+    margin: 0 auto;
   }
 }
 
@@ -644,22 +471,27 @@ main {
   font-weight: bold;
   color: $accent-color;
   text-align: center;
-  animation: glow-pulse 3s infinite, fade-in-out 6s infinite, scale-bounce 4s infinite;
+  animation: glow-pulse 3s infinite, fade-in-out 6s infinite,
+    scale-bounce 4s infinite;
   position: relative;
   z-index: 10;
 }
 
 @keyframes glow-pulse {
-  0%, 100% {
-    text-shadow: 0 0 5px $accent-color, 0 0 10px $accent-color, 0 0 20px lighten($accent-color, 20%), 0 0 30px lighten($accent-color, 40%);
+  0%,
+  100% {
+    text-shadow: 0 0 5px $accent-color, 0 0 10px $accent-color,
+      0 0 20px lighten($accent-color, 20%), 0 0 30px lighten($accent-color, 40%);
   }
   50% {
-    text-shadow: 0 0 10px $accent-color, 0 0 20px $accent-color, 0 0 40px lighten($accent-color, 20%), 0 0 60px lighten($accent-color, 40%);
+    text-shadow: 0 0 10px $accent-color, 0 0 20px $accent-color,
+      0 0 40px lighten($accent-color, 20%), 0 0 60px lighten($accent-color, 40%);
   }
 }
 
 @keyframes fade-in-out {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -668,7 +500,8 @@ main {
 }
 
 @keyframes scale-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -698,5 +531,27 @@ main {
   100% {
     transform: translate(-50%, -50%) scale(1.5);
     opacity: 0;
+  }
+}
+
+// Weekend Schedule section
+.weekend-schedule-section {
+  @include section-container;
+
+  h2 {
+    @include section-heading;
+  }
+
+  p {
+    @include section-body;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      @include section-body;
+    }
   }
 }

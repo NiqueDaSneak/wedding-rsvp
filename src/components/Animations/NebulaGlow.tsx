@@ -10,7 +10,7 @@ const NebulaGlow: React.FC = () => {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -19,7 +19,9 @@ const NebulaGlow: React.FC = () => {
     }
 
     const textureLoader = new THREE.TextureLoader();
-    const nebulaTexture = textureLoader.load('https://threejs.org/examples/textures/galaxy.png');
+    const nebulaTexture = textureLoader.load(
+      'https://threejs.org/examples/textures/galaxy.png',
+    );
 
     const nebulaMaterial = new THREE.SpriteMaterial({ map: nebulaTexture });
     const nebula = new THREE.Sprite(nebulaMaterial);

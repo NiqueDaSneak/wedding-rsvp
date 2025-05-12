@@ -10,7 +10,7 @@ const FireworksDisplay: React.FC = () => {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -33,10 +33,7 @@ const FireworksDisplay: React.FC = () => {
       velocities[i * 3 + 2] = (Math.random() - 0.5) * 4;
     }
 
-    particles.setAttribute(
-      'position',
-      new THREE.BufferAttribute(positions, 3)
-    );
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const particleMaterial = new THREE.PointsMaterial({
       color: 0xffd700,
@@ -57,7 +54,11 @@ const FireworksDisplay: React.FC = () => {
         positions[i * 3 + 1] += velocities[i * 3 + 1] * 0.1;
         positions[i * 3 + 2] += velocities[i * 3 + 2] * 0.1;
 
-        if (Math.abs(positions[i * 3]) > 5 || Math.abs(positions[i * 3 + 1]) > 5 || Math.abs(positions[i * 3 + 2]) > 5) {
+        if (
+          Math.abs(positions[i * 3]) > 5 ||
+          Math.abs(positions[i * 3 + 1]) > 5 ||
+          Math.abs(positions[i * 3 + 2]) > 5
+        ) {
           positions[i * 3] = 0;
           positions[i * 3 + 1] = 0;
           positions[i * 3 + 2] = 0;

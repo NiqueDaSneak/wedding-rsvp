@@ -32,7 +32,10 @@ const IndexPage: React.FC<PageProps> = () => {
     <main>
       <RainingHearts />
 
-      <section className="hero-section" style={{ backgroundImage: `url(${Hero})` }}>
+      <section
+        className="hero-section"
+        style={{ backgroundImage: `url(${Hero})` }}
+      >
         <h1>
           <span>Dominique</span>
           <span className="ampersand">&</span>
@@ -47,7 +50,9 @@ const IndexPage: React.FC<PageProps> = () => {
       <section className="invitation-section">
         <div className="wedding-audio-container">
           <audio src={Song} controls className="wedding-audio-player" />
-          <p className="audio-caption">Listen to the song that captures our love story</p>
+          <p className="audio-caption">
+            Listen to the song that captures our love story
+          </p>
         </div>
         <h2>We joyfully invite you to the celebration of our marriage</h2>
         <p className="date">SEPTEMBER 9, 2025</p>
@@ -55,11 +60,17 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <section className="about-section">
-        <RandomRevealImage src={AnImage} alt="Family and Friends" className="animated-breath" distance={150} />
+        <RandomRevealImage
+          src={AnImage}
+          alt="Family and Friends"
+          className="animated-breath"
+          distance={150}
+        />
         <h3>Family and Friends</h3>
         <p>
-          We are thrilled to invite you to our wedding celebration, where love and laughter await. Your presence
-          would mean the world to us as we celebrate this special day.
+          We are thrilled to invite you to our wedding celebration, where love
+          and laughter await. Your presence would mean the world to us as we
+          celebrate this special day.
         </p>
       </section>
 
@@ -71,11 +82,33 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <section className="dress-code-section">
-        <RandomRevealImage src={ColorScheme} alt="Outdoor Setting" className="grayscale-img" distance={120} />
+        <RandomRevealImage
+          src={ColorScheme}
+          alt="Outdoor Setting"
+          className="grayscale-img"
+          distance={120}
+        />
         <h3>Dress Code</h3>
         <p>
-          Please note that the event will be held outdoors on grass. We recommend wearing comfortable shoes
-          suitable for the terrain.
+          Please note that the event will be held outdoors on grass. We
+          recommend wearing comfortable shoes suitable for the terrain.
+        </p>
+      </section>
+
+      <section className="weekend-schedule-section">
+        <h2>Weekend Schedule</h2>
+        <p>
+          <strong>Saturday:</strong> #itsClemmerTime 90s themed party
+        </p>
+        <ul>
+          <li>Costume Contest with $100 prize</li>
+          <li>Bring a bottle to be entered to win another $100 prize</li>
+        </ul>
+        <p>
+          <strong>Sunday:</strong> Brunch
+        </p>
+        <p>
+          More detailed information will be provided closer to the wedding date.
         </p>
       </section>
 
@@ -84,13 +117,15 @@ const IndexPage: React.FC<PageProps> = () => {
       <section className="rsvp-section">
         <h2>RSVP</h2>
         <p className="notice">
-          Whilst we love little ones, we kindly request a child-free wedding. We hope that the advanced notice
-          means you are still able to attend.
+          Whilst we love little ones, we kindly request a child-free wedding. We
+          hope that the advanced notice means you are still able to attend.
         </p>
         <button onClick={openRSVPForm}>Click Here To RSVP</button>
         <p className="deadline">Kindly respond by June 4th, 2025</p>
         <RandomRevealImage src={Last} alt="RSVP" distance={180} />
-        <p className="closing">We can't wait to share this wonderful day with you!</p>
+        <p className="closing">
+          We can't wait to share this wonderful day with you!
+        </p>
       </section>
 
       <RSVPForm isOpen={isRSVPFormOpen} onClose={closeRSVPForm} />
@@ -105,7 +140,11 @@ export const Head: HeadFC = () => (
     <title>D&S Wedding Invitation</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossOrigin="anonymous"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"

@@ -10,7 +10,7 @@ const ExplodingParticles: React.FC = () => {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -33,10 +33,7 @@ const ExplodingParticles: React.FC = () => {
       velocities[i * 3 + 2] = (Math.random() - 0.5) * 2;
     }
 
-    particles.setAttribute(
-      'position',
-      new THREE.BufferAttribute(positions, 3)
-    );
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const particleMaterial = new THREE.PointsMaterial({
       color: 0xff0000,
