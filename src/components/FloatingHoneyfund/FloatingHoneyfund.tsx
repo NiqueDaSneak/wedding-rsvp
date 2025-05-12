@@ -4,6 +4,7 @@ import './FloatingHoneyfund.scss';
 const FloatingHoneyfund: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -15,11 +16,14 @@ const FloatingHoneyfund: React.FC = () => {
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
+    if (!hasInteracted) {
+      setHasInteracted(true); // Mark as interacted to trigger calmed-down animation
+    }
   };
 
   return (
     <div
-      className={`floating-honeyfund ${isVisible ? 'visible' : ''} ${isExpanded ? 'expanded' : ''}`}
+      className={`floating-honeyfund ${isVisible ? 'visible' : ''} ${isExpanded ? 'expanded' : ''} ${hasInteracted ? 'calmed' : ''}`}
       onClick={handleToggle}
     >
       <div className="fab-card">

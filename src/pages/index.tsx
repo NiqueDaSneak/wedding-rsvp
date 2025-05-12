@@ -61,13 +61,11 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <section className="about-section">
-        <RandomRevealImage
-          src={AnImage}
-          alt="Family and Friends"
-          className="animated-breath"
-          distance={150}
-        />
+        <div className="image-container">
+          <img src={AnImage} alt="Family and Friends" />
+        </div>
         <h3>Family and Friends</h3>
+        <hr />
         <p>
           We are thrilled to invite you to our wedding celebration, where love
           and laughter await. Your presence would mean the world to us as we
@@ -131,7 +129,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
       <RSVPForm isOpen={isRSVPFormOpen} onClose={closeRSVPForm} />
       <FloatingHoneyfund />
-    </main>
+    </main> 
   );
 };
 
