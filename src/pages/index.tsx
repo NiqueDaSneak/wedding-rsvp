@@ -14,6 +14,7 @@ import RSVPForm from '../components/RSVPForm/RSVPForm';
 import FAQSection from '../components/FAQSection/FAQSection';
 import Song from '../images/song.mp3';
 import { AnimatedImage, RandomRevealImage } from '../components/ImageEffects';
+import FloatingHoneyfund from '../components/FloatingHoneyfund/FloatingHoneyfund';
 
 const IndexPage: React.FC<PageProps> = () => {
   const [isRSVPFormOpen, setIsRSVPFormOpen] = React.useState(false);
@@ -129,6 +130,7 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <RSVPForm isOpen={isRSVPFormOpen} onClose={closeRSVPForm} />
+      <FloatingHoneyfund />
     </main>
   );
 };
