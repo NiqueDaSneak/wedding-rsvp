@@ -97,33 +97,52 @@ const IndexPage: React.FC<PageProps> = () => {
 
       <section className="weekend-schedule-section">
         <h2>Weekend Schedule</h2>
-        
+
         <div className="event-title">
           <span className="event-date">Saturday - 9/6/25:</span>
-          <span className="theme-hashtag">#itsclemmertime</span> 90's themed party
+          <span className="theme-hashtag">#itsclemmertime</span> 90's themed
+          party
         </div>
-        
+
         <div className="nineties-party">
           <div className="party-title">Join us for a 90's throwback!</div>
           <ul>
-            <li><span className="highlight">Stock the Bar:</span> Bring a bottle with you and you'll be entered to win a $100 prize</li>
-            <li>The theme: <span className="highlight">take it back to the 90's</span></li>
+            <li>
+              <span className="highlight">Stock the Bar:</span> Bring a bottle
+              with you and you'll be entered to win a $100 prize
+            </li>
+            <li>
+              The theme:{' '}
+              <span className="highlight">take it back to the 90's</span>
+            </li>
             <li>Enter our $100 costume contest with your best 90's outfit</li>
           </ul>
         </div>
-        
+
         <p className="brunch-info">
           <span className="pencil-icon">✏️</span>
-          <strong>Sunday - 9/7/25:</strong> 
+          <strong>Sunday - 9/7/25:</strong>
           <span className="brunch-emoji">🍳</span>
           <span className="wavy-text">Brunch</span>
           <span className="brunch-emoji reverse">🥂</span>
           <span className="tbd-tag">Details Loading...</span>
         </p>
-        
+
         <p className="additional-info">
           More detailed information will be provided closer to the wedding date.
         </p>
+
+        <div className="wedding-day-reminder">
+          <div className="reminder-content">
+            <div className="reminder-day">
+              <span className="day-label">Monday - 9/8/25:</span> Rest Day
+            </div>
+            <div className="reminder-day">
+              <span className="day-label">Tuesday - 9/9/25:</span> Wedding Day!{' '}
+              <span className="heart-icon">💚</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <FAQSection />

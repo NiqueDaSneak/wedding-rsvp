@@ -535,13 +535,17 @@ main {
 // Weekend Schedule section
 .weekend-schedule-section {
   @include section-container;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(209, 237, 158, 0.3));
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(209, 237, 158, 0.3)
+  );
   border-radius: 12px;
   padding: 40px 25px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
-  
+
   @include respond-to(desktop) {
     padding: 60px 40px;
   }
@@ -565,10 +569,15 @@ main {
     letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: 30px;
-    
+
     &::after {
       height: 3px;
-      background: linear-gradient(to right, transparent, $accent-color, transparent);
+      background: linear-gradient(
+        to right,
+        transparent,
+        $accent-color,
+        transparent
+      );
       width: 120px;
     }
   }
@@ -581,7 +590,7 @@ main {
     margin: 30px 0 10px;
     position: relative;
     display: inline-block;
-    
+
     .event-date {
       font-family: 'Montserrat', sans-serif;
       font-size: 1.2rem;
@@ -589,13 +598,13 @@ main {
       color: #a2c563;
       margin-right: 10px;
     }
-    
+
     .theme-hashtag {
       display: inline-block;
       color: #344f26;
       font-weight: 700;
       position: relative;
-      
+
       &::after {
         content: '';
         position: absolute;
@@ -607,19 +616,19 @@ main {
       }
     }
   }
-  
+
   .nineties-party {
-    background: rgba(255,255,255,0.7);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 10px;
     padding: 25px;
     margin: 25px 0;
     position: relative;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     transform: rotate(-1deg);
     max-width: 550px;
     margin-left: auto;
     margin-right: auto;
-    
+
     .party-title {
       font-family: 'Montserrat', sans-serif;
       font-size: 1.5rem;
@@ -628,13 +637,13 @@ main {
       margin-bottom: 15px;
       position: relative;
       display: inline-block;
-      
+
       &::after {
         content: '🎉';
         margin-left: 10px;
       }
     }
-    
+
     ul {
       list-style: none;
       padding: 0;
@@ -646,7 +655,7 @@ main {
         position: relative;
         padding-left: 28px;
         margin-bottom: 12px;
-        
+
         &::before {
           content: '✓';
           position: absolute;
@@ -654,17 +663,21 @@ main {
           color: $accent-color;
           font-weight: bold;
         }
-        
+
         &:nth-child(even) {
           transform: rotate(0.5deg);
         }
-        
+
         &:nth-child(odd) {
           transform: rotate(-0.5deg);
         }
-        
+
         .highlight {
-          background: linear-gradient(to bottom, transparent 50%, rgba(162, 197, 99, 0.3) 50%);
+          background: linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(162, 197, 99, 0.3) 50%
+          );
           padding: 0 5px;
         }
       }
@@ -687,9 +700,9 @@ main {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transform: rotate(1deg);
-    
+
     &::before {
-      content: "UNDER CONSTRUCTION";
+      content: 'UNDER CONSTRUCTION';
       position: absolute;
       top: -10px;
       right: 10px;
@@ -702,13 +715,13 @@ main {
       border-radius: 3px;
       transform: rotate(3deg);
     }
-    
+
     strong {
       font-style: normal;
       font-weight: 600;
       position: relative;
     }
-    
+
     .brunch-emoji {
       display: inline-block;
       font-size: 1.5rem;
@@ -716,19 +729,19 @@ main {
       animation: spin 8s linear infinite;
       transform-origin: center;
       vertical-align: middle;
-      
+
       &.reverse {
         animation: spin-reverse 8s linear infinite;
       }
     }
-    
+
     .wavy-text {
       display: inline-block;
       position: relative;
       font-style: italic;
-      
+
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: -5px;
         left: 0;
@@ -743,7 +756,7 @@ main {
         );
       }
     }
-    
+
     .tbd-tag {
       display: inline-block;
       background: rgba(255, 204, 0, 0.2);
@@ -758,41 +771,140 @@ main {
       position: relative;
       top: -1px;
     }
-    
+
     .pencil-icon {
       display: inline-block;
       transform: rotate(-45deg);
       margin-right: 5px;
     }
   }
-  
+
   .additional-info {
     font-size: 1.1rem;
     margin-top: 25px;
     color: #666;
     font-style: italic;
     position: relative;
-    
+
     &::before {
-      content: "👀";
+      content: '👀';
       margin-right: 8px;
+    }
+  }
+
+  .wedding-day-reminder {
+    margin-top: 25px;
+    width: 100%;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.8;
+    animation: subtle-fade 10s infinite alternate;
+
+    .reminder-content {
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.65));
+      border-radius: 8px;
+      padding: 12px 15px;
+      border: 1px solid rgba(162, 197, 99, 0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      text-align: center;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+
+      &:hover {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(to right, transparent, $accent-color, transparent);
+      }
+    }
+
+    .reminder-day {
+      margin: 6px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+
+      .day-label {
+        font-weight: 600;
+        color: #344f26;
+        margin-right: 10px;
+      }
+
+      &:last-child {
+        font-weight: 500;
+
+        .day-label {
+          color: $accent-color;
+        }
+      }
+
+      .heart-icon {
+        display: inline-block;
+        animation: beat 1.5s infinite alternate;
+        transform-origin: center;
+      }
+    }
+  }
+
+  @keyframes subtle-fade {
+    0% {
+      opacity: 0.7;
+      transform: translateX(-2px);
+    }
+    50% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0.8;
+      transform: translateX(2px);
+    }
+  }
+
+  @keyframes beat {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
     }
   }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin-reverse {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(-360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 // Footer section
