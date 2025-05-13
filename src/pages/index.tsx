@@ -13,7 +13,7 @@ import RainingHearts from '../components/RainingHearts/RainingHearts';
 import RSVPForm from '../components/RSVPForm/RSVPForm';
 import FAQSection from '../components/FAQSection/FAQSection';
 import Song from '../images/song.mp3';
-import { AnimatedImage, RandomRevealImage } from '../components/ImageEffects';
+import { AnimatedImage, FadeInImage } from '../components/ImageEffects';
 import StickyFooterHoneyfund from '../components/FloatingHoneyfund/StickyFooterHoneyfund';
 import Button from '../components/Button';
 
@@ -82,7 +82,7 @@ const IndexPage: React.FC<PageProps> = () => {
       </section>
 
       <section className="dress-code-section">
-        <RandomRevealImage
+        <FadeInImage
           src={ColorScheme}
           alt="Outdoor Setting"
           className="grayscale-img"
@@ -97,17 +97,31 @@ const IndexPage: React.FC<PageProps> = () => {
 
       <section className="weekend-schedule-section">
         <h2>Weekend Schedule</h2>
-        <p>
-          <strong>Saturday - 9/6/25:</strong> #itsClemmerTime 90s themed party
+        
+        <div className="event-title">
+          <span className="event-date">Saturday - 9/6/25:</span>
+          <span className="theme-hashtag">#itsclemmertime</span> 90's themed party
+        </div>
+        
+        <div className="nineties-party">
+          <div className="party-title">Join us for a 90's throwback!</div>
+          <ul>
+            <li><span className="highlight">Stock the Bar:</span> Bring a bottle with you and you'll be entered to win a $100 prize</li>
+            <li>The theme: <span className="highlight">take it back to the 90's</span></li>
+            <li>Enter our $100 costume contest with your best 90's outfit</li>
+          </ul>
+        </div>
+        
+        <p className="brunch-info">
+          <span className="pencil-icon">✏️</span>
+          <strong>Sunday - 9/7/25:</strong> 
+          <span className="brunch-emoji">🍳</span>
+          <span className="wavy-text">Brunch</span>
+          <span className="brunch-emoji reverse">🥂</span>
+          <span className="tbd-tag">Details Loading...</span>
         </p>
-        <ul>
-          <li>Costume Contest with $100 prize</li>
-          <li>Bring a bottle to be entered to win another $100 prize</li>
-        </ul>
-        <p>
-          <strong>Sunday - 9/7/25:</strong> Brunch
-        </p>
-        <p>
+        
+        <p className="additional-info">
           More detailed information will be provided closer to the wedding date.
         </p>
       </section>
@@ -127,7 +141,7 @@ const IndexPage: React.FC<PageProps> = () => {
           Click Here To RSVP
         </Button>
         <p className="deadline">Kindly respond by June 4th, 2025</p>
-        <RandomRevealImage src={Last} alt="RSVP" distance={180} />
+        <FadeInImage src={Last} alt="RSVP" distance={180} />
         <p className="closing">
           We can't wait to share this wonderful day with you!
         </p>

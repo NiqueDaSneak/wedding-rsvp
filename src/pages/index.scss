@@ -535,23 +535,264 @@ main {
 // Weekend Schedule section
 .weekend-schedule-section {
   @include section-container;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(209, 237, 158, 0.3));
+  border-radius: 12px;
+  padding: 40px 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+  
+  @include respond-to(desktop) {
+    padding: 60px 40px;
+  }
+
+  &::before {
+    content: "90's";
+    position: absolute;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8rem;
+    font-weight: 800;
+    color: rgba(162, 197, 99, 0.08);
+    bottom: -20px;
+    right: -10px;
+    transform: rotate(-8deg);
+    z-index: 0;
+  }
 
   h2 {
     @include section-heading;
-  }
-
-  p {
-    @include section-body;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      @include section-body;
+    font-size: 2.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    
+    &::after {
+      height: 3px;
+      background: linear-gradient(to right, transparent, $accent-color, transparent);
+      width: 120px;
     }
   }
+
+  .event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: $text-color;
+    margin: 30px 0 10px;
+    position: relative;
+    display: inline-block;
+    
+    .event-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #a2c563;
+      margin-right: 10px;
+    }
+    
+    .theme-hashtag {
+      display: inline-block;
+      color: #344f26;
+      font-weight: 700;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        height: 3px;
+        background-color: $accent-color;
+        width: 100%;
+        left: 0;
+        bottom: -4px;
+      }
+    }
+  }
+  
+  .nineties-party {
+    background: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 25px 0;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transform: rotate(-1deg);
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    .party-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #344f26;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+      
+      &::after {
+        content: '🎉';
+        margin-left: 10px;
+      }
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      text-align: left;
+
+      li {
+        @include body-style(1.3rem);
+        position: relative;
+        padding-left: 28px;
+        margin-bottom: 12px;
+        
+        &::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: $accent-color;
+          font-weight: bold;
+        }
+        
+        &:nth-child(even) {
+          transform: rotate(0.5deg);
+        }
+        
+        &:nth-child(odd) {
+          transform: rotate(-0.5deg);
+        }
+        
+        .highlight {
+          background: linear-gradient(to bottom, transparent 50%, rgba(162, 197, 99, 0.3) 50%);
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+
+  .brunch-info {
+    margin-top: 35px;
+    position: relative;
+    display: inline-block;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9) 10px,
+      rgba(255, 242, 204, 0.9) 10px,
+      rgba(255, 242, 204, 0.9) 20px
+    );
+    padding: 15px 25px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transform: rotate(1deg);
+    
+    &::before {
+      content: "UNDER CONSTRUCTION";
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      background: #ffcc00;
+      color: #333;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 3px;
+      transform: rotate(3deg);
+    }
+    
+    strong {
+      font-style: normal;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .brunch-emoji {
+      display: inline-block;
+      font-size: 1.5rem;
+      margin: 0 5px;
+      animation: spin 8s linear infinite;
+      transform-origin: center;
+      vertical-align: middle;
+      
+      &.reverse {
+        animation: spin-reverse 8s linear infinite;
+      }
+    }
+    
+    .wavy-text {
+      display: inline-block;
+      position: relative;
+      font-style: italic;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: repeating-linear-gradient(
+          to right,
+          transparent,
+          transparent 2px,
+          #a2c563 2px,
+          #a2c563 4px
+        );
+      }
+    }
+    
+    .tbd-tag {
+      display: inline-block;
+      background: rgba(255, 204, 0, 0.2);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 5px;
+      border: 1px dashed #ffcc00;
+      transform: rotate(-1deg);
+      position: relative;
+      top: -1px;
+    }
+    
+    .pencil-icon {
+      display: inline-block;
+      transform: rotate(-45deg);
+      margin-right: 5px;
+    }
+  }
+  
+  .additional-info {
+    font-size: 1.1rem;
+    margin-top: 25px;
+    color: #666;
+    font-style: italic;
+    position: relative;
+    
+    &::before {
+      content: "👀";
+      margin-right: 8px;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 // Footer section

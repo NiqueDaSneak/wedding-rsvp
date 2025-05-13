@@ -104,3 +104,21 @@
     transform: scale(1);
   }
 }
+
+.fade-in-image-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .fade-in-image-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    .fade-in-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}
