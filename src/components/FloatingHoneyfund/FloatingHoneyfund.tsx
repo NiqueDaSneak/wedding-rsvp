@@ -24,13 +24,17 @@ const FloatingHoneyfund: React.FC = () => {
 
   return (
     <div
-      className={`floating-honeyfund ${isVisible ? 'visible' : ''} ${isExpanded ? 'expanded' : ''} ${hasInteracted ? 'calmed' : ''}`}
+      className={`floating-honeyfund ${isVisible ? 'visible' : ''} ${
+        isExpanded ? 'expanded' : ''
+      } ${hasInteracted ? 'calmed' : ''}`}
       onClick={handleToggle}
     >
       <div className="fab-card">
         {isExpanded && (
           <>
-            <p>Support our journey on <strong>Honeyfund</strong>!</p>
+            <p>
+              Support our journey on <strong>Honeyfund</strong>!
+            </p>
             <Button
               href="https://www.honeyfund.com/site/ItsClemmerTime"
               target="_blank"

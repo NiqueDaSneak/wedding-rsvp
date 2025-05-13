@@ -78,7 +78,7 @@
 
     &.expanded {
       opacity: 1;
-      max-height: 2000px;
+      max-height: none; // Change from 2000px to none to allow any height
       transform: translateY(0);
       margin-bottom: 2rem;
     }

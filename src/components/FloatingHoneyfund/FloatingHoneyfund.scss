@@ -70,11 +70,21 @@
   }
 
   @keyframes color-flash {
-    0% { background-color: #ff6f61; }
-    25% { background-color: #ffcc00; }
-    50% { background-color: #4caf50; }
-    75% { background-color: #2196f3; }
-    100% { background-color: #ff6f61; }
+    0% {
+      background-color: #ff6f61;
+    }
+    25% {
+      background-color: #ffcc00;
+    }
+    50% {
+      background-color: #4caf50;
+    }
+    75% {
+      background-color: #2196f3;
+    }
+    100% {
+      background-color: #ff6f61;
+    }
   }
 }
 

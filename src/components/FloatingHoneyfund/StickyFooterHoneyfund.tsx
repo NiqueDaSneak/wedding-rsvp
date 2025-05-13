@@ -15,11 +15,18 @@ const StickyFooterHoneyfund: React.FC = () => {
 
   return (
     <div className={`sticky-footer ${isVisible ? 'visible' : ''}`}>
-      <button className="close-button" onClick={() => setIsVisible(false)} aria-label="Close">
+      <button
+        className="close-button"
+        onClick={() => setIsVisible(false)}
+        aria-label="Close"
+      >
         ×
       </button>
       <div className="footer-content">
-        <p>Your love and support mean the world to us. If you'd like to contribute to our journey, visit our Honeyfund page.</p>
+        <p>
+          Your love and support mean the world to us. If you'd like to
+          contribute to our journey, visit our Honeyfund page.
+        </p>
         <Button
           href="https://www.honeyfund.com/site/ItsClemmerTime"
           target="_blank"

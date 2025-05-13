@@ -10,7 +10,14 @@ type ButtonProps = {
   disabled?: boolean;
 };
 
-const Button: React.FC<ButtonProps> = ({ onClick, href, target = '_self', children, className = '', disabled = false }) => {
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  href,
+  target = '_self',
+  children,
+  className = '',
+  disabled = false,
+}) => {
   if (href) {
     return (
       <a
@@ -25,7 +32,11 @@ const Button: React.FC<ButtonProps> = ({ onClick, href, target = '_self', childr
   }
 
   return (
-    <button onClick={onClick} className={`button ${className}`} disabled={disabled}>
+    <button
+      onClick={onClick}
+      className={`button ${className}`}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
