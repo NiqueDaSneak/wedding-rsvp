@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './FAQSection.scss';
 import FAQAccordion from '../FAQAccordion/FAQAccordion';
+import Button from '../Button';
 import {
   FaPlane,
   FaBed,
@@ -170,7 +171,7 @@ const FAQSection: React.FC<FAQSectionProps> = () => {
         </p>
       </div>
 
-      <button
+      <Button
         className={`faq-toggle-button ${isExpanded ? 'expanded' : ''}`}
         onClick={toggleFAQs}
         aria-expanded={isExpanded}
@@ -180,7 +181,7 @@ const FAQSection: React.FC<FAQSectionProps> = () => {
         <span className="toggle-icon">
           {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
         </span>
-      </button>
+      </Button>
 
       <div
         id="faq-content"

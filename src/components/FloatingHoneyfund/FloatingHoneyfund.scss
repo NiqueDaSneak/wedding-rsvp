@@ -56,18 +56,7 @@
     }
 
     .cta-button {
-      display: none;
-      background-color: #ff6f61;
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: #e65a50;
-      }
+      @include unified-button-style;
     }
 
     &:hover p {
@@ -86,5 +75,72 @@
     50% { background-color: #4caf50; }
     75% { background-color: #2196f3; }
     100% { background-color: #ff6f61; }
+  }
+}
+
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ff6f61;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+
+  &.collapsed {
+    transform: translateY(100%);
+  }
+
+  &.expanded {
+    transform: translateY(0);
+  }
+
+  .toggle-button {
+    background-color: white;
+    color: #ff6f61;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: #ffcccb;
+      color: #ff6f61;
+    }
+  }
+
+  .footer-content {
+    text-align: center;
+
+    p {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .cta-button {
+      background-color: white;
+      color: #ff6f61;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: #ffcccb;
+        color: #ff6f61;
+      }
+    }
   }
 }

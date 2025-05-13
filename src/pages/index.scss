@@ -342,10 +342,6 @@ main {
     @include section-body;
   }
 
-  button {
-    @include section-button;
-  }
-
   img {
     @include section-image;
     margin: 0 auto;
@@ -552,6 +548,53 @@ main {
 
     li {
       @include section-body;
+    }
+  }
+}
+
+// Footer section
+footer {
+  background-color: #344f26; /* Dark green */
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  border-top: 4px solid #a2c563; /* Accent green */
+
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+
+    p {
+      margin: 0 0 15px;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    a {
+      color: #a2c563;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #d1ed9e;
+      }
+    }
+  }
+
+  .social-icons {
+    margin-top: 20px;
+
+    a {
+      margin: 0 15px;
+      color: white;
+      font-size: 24px;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #a2c563;
+      }
     }
   }
 }

@@ -189,6 +189,10 @@ $accent-color: #a0a0a0;
   &:active {
     transform: translateY(1px);
   }
+
+  button {
+    @include unified-button-style;
+  }
 }
 
 .attending-group {

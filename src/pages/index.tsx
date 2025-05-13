@@ -14,7 +14,8 @@ import RSVPForm from '../components/RSVPForm/RSVPForm';
 import FAQSection from '../components/FAQSection/FAQSection';
 import Song from '../images/song.mp3';
 import { AnimatedImage, RandomRevealImage } from '../components/ImageEffects';
-import FloatingHoneyfund from '../components/FloatingHoneyfund/FloatingHoneyfund';
+import StickyFooterHoneyfund from '../components/FloatingHoneyfund/StickyFooterHoneyfund';
+import Button from '../components/Button';
 
 const IndexPage: React.FC<PageProps> = () => {
   const [isRSVPFormOpen, setIsRSVPFormOpen] = React.useState(false);
@@ -97,14 +98,14 @@ const IndexPage: React.FC<PageProps> = () => {
       <section className="weekend-schedule-section">
         <h2>Weekend Schedule</h2>
         <p>
-          <strong>Saturday:</strong> #itsClemmerTime 90s themed party
+          <strong>Saturday - 9/6/25:</strong> #itsClemmerTime 90s themed party
         </p>
         <ul>
           <li>Costume Contest with $100 prize</li>
           <li>Bring a bottle to be entered to win another $100 prize</li>
         </ul>
         <p>
-          <strong>Sunday:</strong> Brunch
+          <strong>Sunday - 9/7/25:</strong> Brunch
         </p>
         <p>
           More detailed information will be provided closer to the wedding date.
@@ -119,7 +120,12 @@ const IndexPage: React.FC<PageProps> = () => {
           Whilst we love little ones, we kindly request a child-free wedding. We
           hope that the advanced notice means you are still able to attend.
         </p>
-        <button onClick={openRSVPForm}>Click Here To RSVP</button>
+        <Button
+          onClick={openRSVPForm}
+          // style={{ color: '#0056b3', backgroundColor: '#ffffff' }}
+        >
+          Click Here To RSVP
+        </Button>
         <p className="deadline">Kindly respond by June 4th, 2025</p>
         <RandomRevealImage src={Last} alt="RSVP" distance={180} />
         <p className="closing">
@@ -127,9 +133,28 @@ const IndexPage: React.FC<PageProps> = () => {
         </p>
       </section>
 
+      <section className="honeyfund-section">
+        <div className="honeyfund-container">
+          <h2 className="honeyfund-title">Contribute to Our Journey</h2>
+          <p className="honeyfund-description">
+            We are so grateful for your love and support. If you'd like to help
+            us start our new chapter, please visit our Honeyfund page.
+          </p>
+          <div className="honeyfund-button-container">
+            <Button
+              href="https://www.honeyfund.com/site/ItsClemmerTime"
+              target="_blank"
+              className="honeyfund-button"
+            >
+              Visit Honeyfund
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <RSVPForm isOpen={isRSVPFormOpen} onClose={closeRSVPForm} />
-      <FloatingHoneyfund />
-    </main> 
+      <StickyFooterHoneyfund />
+    </main>
   );
 };
 

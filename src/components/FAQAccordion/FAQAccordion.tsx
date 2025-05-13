@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FAQAccordion.scss';
+import Button from '../Button';
 
 interface FAQItem {
   question: string;
@@ -32,7 +33,7 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({ title, items, icon }) => {
             key={index}
             className={`faq-item ${openIndex === index ? 'open' : ''}`}
           >
-            <button
+            <Button
               className="faq-question"
               onClick={() => toggleAccordion(index)}
               aria-expanded={openIndex === index}
@@ -41,7 +42,7 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({ title, items, icon }) => {
               <span className="faq-icon">
                 {openIndex === index ? '−' : '+'}
               </span>
-            </button>
+            </Button>
 
             {openIndex === index && (
               <div className="faq-answer">{item.answer}</div>

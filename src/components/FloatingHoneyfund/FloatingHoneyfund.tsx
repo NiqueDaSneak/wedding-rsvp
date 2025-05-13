@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './FloatingHoneyfund.scss';
+import Button from '../Button';
 
 const FloatingHoneyfund: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,14 +31,13 @@ const FloatingHoneyfund: React.FC = () => {
         {isExpanded && (
           <>
             <p>Support our journey on <strong>Honeyfund</strong>!</p>
-            <a
+            <Button
               href="https://www.honeyfund.com/site/ItsClemmerTime"
               target="_blank"
-              rel="noopener noreferrer"
-              className="cta-button"
+              className="honeyfund-button"
             >
               Visit Honeyfund
-            </a>
+            </Button>
           </>
         )}
       </div>

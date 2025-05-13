@@ -1,3 +1,6 @@
+@import '../index.scss';
+@import '../../pages/index.scss';
+
 // SCSS for FAQ Accordion
 .faq-accordion {
   margin-bottom: 2rem;
@@ -45,6 +48,7 @@
   }
 
   .faq-question {
+    @include unified-button-style;
     width: 100%;
     background: none;
     border: none;

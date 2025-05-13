@@ -1,0 +1,92 @@
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #344f26; /* Dark green to match aesthetic */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Increased padding for better spacing */
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%); /* Initially hidden */
+  transition: transform 0.5s ease 0.5s, background-color 0.3s ease; /* Added delay for slide-up */
+  z-index: 1000;
+
+  &.collapsed {
+    transform: translateY(calc(100% - 40px)); /* Show only the header */
+  }
+
+  &.expanded {
+    transform: translateY(0);
+  }
+
+  &.visible {
+    transform: translateY(0); /* Slide up */
+  }
+
+  .footer-header {
+    background-color: #a2c563; /* Accent green */
+    color: #344f26;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-top: 2px solid #344f26;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: #d1ed9e; /* Lighter green for hover */
+      color: #344f26;
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #d1ed9e; /* Lighter green for hover */
+    }
+  }
+
+  .footer-content {
+    text-align: center;
+    padding: 10px 20px; /* Added horizontal padding for better spacing */
+
+    p {
+      margin: 0 0 15px; /* Increased bottom margin for better spacing */
+      font-size: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.5;
+    }
+
+    .cta-button {
+      background-color: white;
+      color: #344f26;
+      text-decoration: none;
+      padding: 12px 24px; /* Increased padding for better spacing */
+      border-radius: 20px;
+      font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: #d1ed9e;
+        color: #344f26;
+      }
+    }
+  }
+}

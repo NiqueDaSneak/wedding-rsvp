@@ -50,6 +50,10 @@ $body-font: 'Cormorant Garamond', serif;
 }
 
 @mixin section-button {
+  @include unified-button-style;
+}
+
+@mixin unified-button-style {
   background: transparent;
   border: 1px solid $text-color;
   padding: 12px 28px;
