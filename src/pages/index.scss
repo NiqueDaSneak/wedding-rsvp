@@ -802,7 +802,11 @@ main {
     animation: subtle-fade 10s infinite alternate;
 
     .reminder-content {
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.65));
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.85),
+        rgba(255, 255, 255, 0.65)
+      );
       border-radius: 8px;
       padding: 12px 15px;
       border: 1px solid rgba(162, 197, 99, 0.2);
@@ -824,7 +828,12 @@ main {
         left: 0;
         right: 0;
         height: 2px;
-        background: linear-gradient(to right, transparent, $accent-color, transparent);
+        background: linear-gradient(
+          to right,
+          transparent,
+          $accent-color,
+          transparent
+        );
       }
     }
 
@@ -951,5 +960,41 @@ footer {
         color: #a2c563;
       }
     }
+  }
+}
+
+.event-details-section {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background: #f8fbf2;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  padding: 32px 18px 22px 18px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+
+  h2 {
+    font-size: 2.1rem;
+    margin-bottom: 10px;
+    color: $accent-color;
+    letter-spacing: 0.04em;
+  }
+
+  p {
+    font-size: 1.18rem;
+    line-height: 1.7;
+    color: $text-color;
+    margin: 0;
+  }
+
+  .event-time {
+    display: block;
+    margin-top: 8px;
+    font-weight: 600;
+    color: #344f26;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
   }
 }

@@ -16,6 +16,7 @@ import Song from '../images/song.mp3';
 import { AnimatedImage, FadeInImage } from '../components/ImageEffects';
 import StickyFooterHoneyfund from '../components/FloatingHoneyfund/StickyFooterHoneyfund';
 import Button from '../components/Button';
+import GrayscalePalette from '../components/GrayscalePalette';
 
 const IndexPage: React.FC<PageProps> = () => {
   const [isRSVPFormOpen, setIsRSVPFormOpen] = React.useState(false);
@@ -61,6 +62,19 @@ const IndexPage: React.FC<PageProps> = () => {
         <p className="animated-date">9/9/9</p>
       </section>
 
+      <section className="event-details-section">
+        <h2>When & Where</h2>
+        <p>
+          <strong>Clemmer Farms</strong>
+          <br />
+          9804 Harold Bedford Road
+          <br />
+          Riverview, Florida 33578
+          <br />
+          <span className="event-time">5:30pm, 9/9/2025</span>
+        </p>
+      </section>
+
       <section className="about-section">
         <div className="image-container">
           <img src={AnImage} alt="Family and Friends" />
@@ -86,13 +100,15 @@ const IndexPage: React.FC<PageProps> = () => {
           src={ColorScheme}
           alt="Outdoor Setting"
           className="grayscale-img"
-          distance={120}
         />
-        <h3>Dress Code</h3>
+        <h3>Dress Code: Grayscale</h3>
         <p>
-          Please note that the event will be held outdoors on grass. We
-          recommend wearing comfortable shoes suitable for the terrain.
+          The ceremony and reception will be held outdoors on grass, during
+          sunset in a shaded area. Please wear shades of gray, black, or
+          white—see the palette below for inspiration! Comfortable shoes are
+          recommended for the terrain.
         </p>
+        <GrayscalePalette />
       </section>
 
       <section className="weekend-schedule-section">
@@ -160,7 +176,7 @@ const IndexPage: React.FC<PageProps> = () => {
           Click Here To RSVP
         </Button>
         <p className="deadline">Kindly respond by June 4th, 2025</p>
-        <FadeInImage src={Last} alt="RSVP" distance={180} />
+        <FadeInImage src={Last} alt="RSVP" />
         <p className="closing">
           We can't wait to share this wonderful day with you!
         </p>
