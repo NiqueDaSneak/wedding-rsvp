@@ -1,15 +1,7 @@
 import React from 'react';
 import './GrayscalePalette.scss';
 
-const grayscaleColors = [
-  '#333333',
-  '#555555',
-  '#777777',
-  '#999999',
-  '#bbbbbb',
-  '#dddddd',
-  '#f5f5f5',
-];
+const grayscaleColors = ['#555555', '#777777', '#999999', '#bbbbbb', '#dddddd'];
 
 const GrayscalePalette: React.FC = () => (
   <div className="grayscale-palette">
