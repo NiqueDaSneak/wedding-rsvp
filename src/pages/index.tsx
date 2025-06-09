@@ -104,9 +104,9 @@ const IndexPage: React.FC<PageProps> = () => {
         <h3>Dress Code: Grayscale</h3>
         <p>
           The ceremony and reception will be held outdoors on grass, during
-          sunset in a shaded area. Please wear shades of gray, black, or
-          white—see the palette below for inspiration! Comfortable shoes are
-          recommended for the terrain.
+          sunset in a shaded area. Please wear shades of gray—see the palette
+          below for inspiration! Comfortable shoes are recommended for the
+          terrain.
         </p>
         <GrayscalePalette />
       </section>
